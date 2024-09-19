@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Pull the latest changes from Git
+sudo git pull
+
+# Sync the staging directory to the web directory
+sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/ /var/www/html/sargents_sweets/
+
+# Reload the Nginx service to apply changes
+sudo service nginx reload
