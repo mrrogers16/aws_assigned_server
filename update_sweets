@@ -3,8 +3,15 @@
 # Pull the latest changes from Git
 sudo git pull
 
+
+# NOTE: To add directories to syncable list use following command format
+# sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/ /var/www/html/INSERT_YOUR_NEW_DIRECTORY_HERE/
+
 # Sync the staging directory to the web directory
 sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/ /var/www/html/sargents_sweets/
+
+# Sync the staging directory to the web directory
+sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/ /var/www/html/hw05/
 
 # Reload the Nginx service to apply changes
 sudo service nginx reload
