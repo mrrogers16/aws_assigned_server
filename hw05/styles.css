@@ -49,7 +49,7 @@ footer {
 
 /* WRITE YOUR CODE BELOW HERE */
 
-/* font-face code for merriweather regular and roboto slab regular */
+/* font-face code for merriweather regular - body text */
 
 @font-face {
     font-family: 'merriweatherregular';
@@ -60,6 +60,7 @@ footer {
 
 }
 
+/* font-face code for merriweather-black (probably wont use) */
 @font-face {
     font-family: 'merriweatherblack';
     src: url('fonts/merriweather/merriweather-black-webfont.woff2') format('woff2'),
@@ -69,6 +70,7 @@ footer {
 
 }
 
+/* font-face code for roboto slab regular - header text */
 @font-face {
     font-family: 'roboto_slabregular';
     src: url('fonts/roboto_slab/robotoslab-variablefont_wght-webfont.woff2') format('woff2'),
@@ -86,4 +88,66 @@ body {
     line-height: 1.6;
     letter-spacing: 0.02em;
     word-spacing: 0.05em;
+}
+
+h1,
+h2 {
+    font-family: 'roboto_slabregular', serif;
+    letter-spacing: 0.05em;
+}
+
+h1 {
+    text-align: center;
+}
+
+section h2+p {
+    text-indent: 20px;
+}
+
+/* Link Styling */
+
+a {
+    color: #a66;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #323cf8;
+}
+
+a:focus,
+a:hover {
+    color: #d66;
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+/* regex looking for http indicating the link is external (for most cases) */
+a[href^="http"]::after {
+    content: '';
+    display: inline-block;
+    background-image: url('external-link-52.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+a:active {
+    background-color: #bc0000;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+/* List Styling */
+
+ul,
+ol {
+    line-height: 1.6;
 }
