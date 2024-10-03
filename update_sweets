@@ -10,7 +10,7 @@ sudo git pull
 # Sync the staging directory to the web directory
 sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/ /var/www/html/sargents_sweets/
 
-# Sync the staging directory to the web directory
+# Sync the hw05 directory to the web directory
 sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/hw05/ /var/www/html/hw05/
 
 # Reload the Nginx service to apply changes
