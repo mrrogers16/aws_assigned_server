@@ -25,7 +25,7 @@ function generateOddNumbers() {
 
 function generateFibNumbers() {
     console.log("generateFibNumbers was called and is working") // debug line
-    let fibo = [0, 1]; //first 2 fib numbers to get us started 
+    let fibo = [1, 1]; //first 2 fib numbers to get us started 
     // Calculate next fib number at fib[2]. First 10 fibs = 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
     for (let i = 2; i < 100; i++) {
         //each new fib number is the sum of the previous two 
