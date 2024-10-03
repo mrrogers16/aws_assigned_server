@@ -12,7 +12,7 @@ function formatOutput(arr) {
 }
 
 function generateOddNumbers() {
-    console.log("generateOddNumbers is called") // debug line
+    console.log("generateOddNumbers was called and is working") // debug line
     let odds = []; // Init empty array to store odd numbers
     // Generate teh first 100 odd numbers
     for (let i = 1; odds.length < 100; i += 2) {
@@ -24,7 +24,7 @@ function generateOddNumbers() {
 }
 
 function generateFibNumbers() {
-    console.log("generateFibNumbers is called") // debug line
+    console.log("generateFibNumbers was called and is working") // debug line
     let fibo = [0, 1]; //first 2 fib numbers to get us started 
     // Calculate next fib number at fib[2]. First 10 fibs = 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
     for (let i = 2; i < 100; i++) {
@@ -36,7 +36,7 @@ function generateFibNumbers() {
 }
 
 function generatePrimeNumbers() {
-    console.log("generatePrimeNumbers was called") // debug line
+    console.log("generatePrimeNumbers was called and is working") // debug line
     let primes = [] // empty array to store primes
 
     // loop to check if number is prime from 2 - 99. 1 is not a prime so we skip
