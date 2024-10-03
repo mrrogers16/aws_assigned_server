@@ -6,7 +6,7 @@ function formatOutput(arr) {
 
     if (arr.length > 1) {
         let lastNumber = arr.pop(); // remove last element from array
-        return arr.join(", ") + ", and " + lastNumber; // join everything before the last number with a comma ',' and the word 'and' at the end of the array.
+        return arr.join(", ") + ", and " + lastNumber + '.'; // join everything before the last number with a comma ',' and the word 'and' at the end of the array with a period to finish
     }
     return arr.join(", ") // in the case there is only 1 element
 }
@@ -20,23 +20,20 @@ function generateOddNumbers() {
     }
 
     // Find the <p> tag with id="odds" and display as text
-    document.getElementById("odds").innerText = formatOutput(odds) + '.';
-    // Call funtion
-    generateOddNumbers();
-
-    function generateFibNumbers() {
-        console.log("generateFibNumbers is called") // debug line
-        let fibo = [0, 1]; //first 2 fib numbers to get us started 
-        // Calculate next fib number at fib[2]. First 10 fibs = 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-        for (let i = 2; i < 100; i++) {
-            //each new fib number is the sum of the previous two 
-            fibo[i] = fibo[i - 1] + fibo[i - 2];
-        }
-        // Find <p> tag with id="fibo" and display as text
-        document.getElementById("fibo").innerText = fibo.join(", ");
-    }
+    document.getElementById("odds").innerText = formatOutput(odds);
 }
 
+function generateFibNumbers() {
+    console.log("generateFibNumbers is called") // debug line
+    let fibo = [0, 1]; //first 2 fib numbers to get us started 
+    // Calculate next fib number at fib[2]. First 10 fibs = 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+    for (let i = 2; i < 100; i++) {
+        //each new fib number is the sum of the previous two 
+        fibo[i] = fibo[i - 1] + fibo[i - 2];
+    }
+    // Find <p> tag with id="fibo" and display as text
+    document.getElementById("fibo").innerText = formatOutput(fibo);
+}
 
 function generatePrimeNumbers() {
     console.log("generatePrimeNumbers was called") // debug line
@@ -61,7 +58,7 @@ function generatePrimeNumbers() {
         }
     }
     // find the <p> tag with id="primes" and display as text 
-    document.getElementById("primes").innerText = primes.join(", ");
+    document.getElementById("primes").innerText = formatOutput(primes);
 }
 
 generateOddNumbers();
