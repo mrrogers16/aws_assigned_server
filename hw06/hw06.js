@@ -35,34 +35,35 @@ function generateOddNumbers() {
         // Find <p> tag with id="fibo" and display as text
         document.getElementById("fibo").innerText = fibo.join(", ");
     }
+}
 
 
-    function generatePrimeNumbers() {
-        console.log("generatePrimeNumbers was called") // debug line
-        let primes = [] // empty array to store primes
+function generatePrimeNumbers() {
+    console.log("generatePrimeNumbers was called") // debug line
+    let primes = [] // empty array to store primes
 
-        // loop to check if number is prime from 2 - 99. 1 is not a prime so we skip
-        for (let i = 2; i < 100; i++) {
-            // assume number is prime
-            let isPrime = true;
-            // loop to check if i is divisible by any number between 2 and the sqrt of i
-            // if numbers divisor is larger than its square root we have already found the smaller divisor
-            for (let j = 2; j <= Math.sqrt(i); j++) {
-                // if i and j are divisible isPrime = false
-                if (i % j === 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-            // if the isPrime flag hasnt been set to false we add it to the primes array
-            if (isPrime) {
-                primes.push(i);
+    // loop to check if number is prime from 2 - 99. 1 is not a prime so we skip
+    for (let i = 2; i < 100; i++) {
+        // assume number is prime
+        let isPrime = true;
+        // loop to check if i is divisible by any number between 2 and the sqrt of i
+        // if numbers divisor is larger than its square root we have already found the smaller divisor
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+            // if i and j are divisible isPrime = false
+            if (i % j === 0) {
+                isPrime = false;
+                break;
             }
         }
-        // find the <p> tag with id="primes" and display as text 
-        document.getElementById("primes").innerText = primes.join(", ");
+        // if the isPrime flag hasnt been set to false we add it to the primes array
+        if (isPrime) {
+            primes.push(i);
+        }
     }
+    // find the <p> tag with id="primes" and display as text 
+    document.getElementById("primes").innerText = primes.join(", ");
+}
 
-    generateOddNumbers();
-    generateFibNumbers();
-    generatePrimeNumbers();
+generateOddNumbers();
+generateFibNumbers();
+generatePrimeNumbers();
