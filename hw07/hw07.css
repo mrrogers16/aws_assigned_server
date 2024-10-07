@@ -1,0 +1,33 @@
+
+/* General body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d3d3d3;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Screen class styling (Both Data and Result) */
+.screen {
+    background-color: white;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Screen class styling (Data) */
+#data {
+    border: 2px solild blue; /*add blue border to data box per instructions*/
+    color: black;
+}
+
+/* Screen class styling (Result of las command) */
+#result {
+    border: 2px solid green; /*add blue border to data box per instructions*/
+    color: black;
+}

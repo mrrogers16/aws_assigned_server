@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Homework #7</title>
+
+    <link rel="stylesheet" href="./hw07.css" />
+
+    <script src="./hw07.js"></script>
+
+    <script>
+
+        function mkOrdered() {
+
+            setData('100 ordered numbers were listed.', populate(100, (k) => k));
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h2>Data</h2>
+
+    <p class="screen" id="data">nothing yet</p>
+
+    <h2>Result of last command</h2>
+
+    <p class="screen" id="result">undefined.</p>
+
+    <h2>Controls</h2>
+
+    <input type="button" onClick="mkOrdered() ;" value="fill ordered" />
+
+    <input type="button" onClick="mkRandom() ;" value="Fill random" />
+
+    <input type="button" onClick="incr()" value="increment" />
+
+    <input type="button" onClick="oddify()" value="oddify" />
+
+    <input type="button" onClick="allEven()" value="all even?" />
+
+    <input type="button" onClick="allOdd()" value="all odd?" />
+
+    <input type="button" onClick="hasDozen()" value="Multiple of 12" />
+
+    <input type="button" onClick="skipRemove()" value="Skip/remove" />
+
+</body>
+
+</html>
