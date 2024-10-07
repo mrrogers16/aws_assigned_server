@@ -45,3 +45,18 @@ input[type="button"] {
     display: inline-block;
     width: 150px;
 }
+
+/*Ensure buttons remain responsive*/
+@media (min-width: 600px) {
+    input[type="button"] {
+        width: 150px;
+        /*buttons stay same size*/
+    }
+}
+
+@media (max-width: 600px) {
+    input[type="button"] {
+        width: 100%;
+        /* full width buttons for smaller screens*/
+    }
+}
