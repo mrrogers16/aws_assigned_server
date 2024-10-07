@@ -17,6 +17,8 @@ body {
     max-width: 600px;
     font-size: 18px;
     text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 /* Screen class styling (Data) */

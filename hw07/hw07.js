@@ -40,7 +40,7 @@ function incr() {
 
 function oddify() {
     programData = programData.map((n) => n * 2 + 1);
-    setData('data has been modified')
+    setData('data has been modified', programData);
 }
 
 function allEven() {
