@@ -19,7 +19,7 @@ function setData(msg, data) {
     let resultElement = document.getElementById("result");
 
     // Convert to string and display 'Data'
-    dataElement.innerText = JSON.stringify(data);
+    dataElement.innerText = data.join(' ');
     // Display msg in result element
     resultElement.innerText = msg;
     // Defined
