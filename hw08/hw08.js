@@ -33,14 +33,14 @@ class ColorApp {
             alert('Please enter a valid positive integer.');
             this.promptForN(); // prompt user again
         }
-    } 
+    }
 
     // method to create both divs
     createDivs() {
 
         // #hello-world div
         this.helloDiv = document.createElement('div');
-        this.helloDiv.id = 'helloDiv';
+        this.helloDiv.id = 'helloContainer';
         this.helloDiv.innerText = 'Hello, World!';
         document.body.appendChild(this.helloDiv);
 
@@ -48,6 +48,49 @@ class ColorApp {
         this.buttonContainer = document.createElement('div');
         this.buttonContainer.id = 'buttonContainer';
         document.body.appendChild(this.buttonContainer);
+    }
+
+    generateColorButtons() {
+
+        const N = this.N;
+        const step = 255 / (N - 1);
+        const colorValues = [];
+
+        // Generate color values
+        for (let i = 0; i < N; i++) {
+            colorValues.push(Math.round(i * step));
+        }
+
+        // Generate buttons
+        for (let r = 0; r < N; r++) {
+            for (let g = 0; g < N; g++) {
+                for (let b = 0; b < N; b++) {
+                    const red = colorValues[r];
+                    const green = colorValues[g];
+                    const blue = colorValues[b];
+
+                    // Convert to hexadecimal
+                    const redHex = ('00' + red.toString(16)).slice(-2);
+                    const greenHex = ('00' + green.toString(16)).slice(-2);
+                    const blueHex = ('00' + blue.toString(16)).slice(-2);
+
+                    const colorCode = "#" + redHex + greenHex + blueHex;
+
+                    // Create our buttons
+                    const colorButton = document.createElement('button');
+                    colorButton.className = 'colorButton';
+                    colorButton.style.backgroundColor = colorCode;
+
+                    // Event Listener
+                    colorButton.addEventListener('click', () => {
+                        this.helloDiv.style.backgroundColor = colorCode;
+                    });
+
+                    // Append button
+                    this.buttonContainer.appendChild(colorButton);
+                }
+            }
+        }
     }
 }
 
