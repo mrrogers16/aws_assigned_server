@@ -55,6 +55,7 @@ class ColorApp {
         const N = this.N;
         const step = 255 / (N - 1);
         const colorValues = [];
+        let buttonCounter = 1; // Counter to number buttons to match the video
 
         // Generate color values
         for (let i = 0; i < N; i++) {
@@ -80,6 +81,12 @@ class ColorApp {
                     const colorButton = document.createElement('button');
                     colorButton.className = 'colorButton';
                     colorButton.style.backgroundColor = colorCode;
+
+                    // Add buttonCounter as text inside our button
+                    colorButton.innerText = buttonCounter;
+
+                    // Increment buttonCounter
+                    buttonCounter++;
 
                     // Event Listener
                     colorButton.addEventListener('click', () => {
