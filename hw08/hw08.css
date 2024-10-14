@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* "Hello, World!" div styling */
+#hello-world {
+    padding: 20px;
+    font-size: 24px;
+    margin: 20px auto;
+    border: 2px solid black;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+/* Button Container */
+#button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 50px);
+    gap: 5px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Color button styling */
+.color-button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
