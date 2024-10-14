@@ -75,6 +75,7 @@ class ColorApp {
                     const greenHex = ('00' + green.toString(16)).slice(-2);
                     const blueHex = ('00' + blue.toString(16)).slice(-2);
 
+                    // Put it all together for our rgb value
                     const colorCode = "#" + redHex + greenHex + blueHex;
 
                     // Create our buttons
@@ -88,7 +89,7 @@ class ColorApp {
                     // Increment buttonCounter
                     buttonCounter++;
 
-                    // Event Listener
+                    // Event Listener to change color to button clicked color
                     colorButton.addEventListener('click', () => {
                         this.helloDiv.style.backgroundColor = colorCode;
                     });
