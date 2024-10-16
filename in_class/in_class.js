@@ -71,4 +71,4 @@ class NumberDisplay {
 
 // Run init when the window loads
 const numberDisplay = new NumberDisplay();
-window.onload = () => numberDisplay().init();
+window.onload = () => numberDisplay.init();
