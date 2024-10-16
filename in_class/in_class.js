@@ -2,9 +2,23 @@
 // Initialize random number to start with
 let number = Math.floor(Math.random() * 1000);
 
+// Function to update the display, placing each digit in its own cell
 function updateDisplay(newNumber) {
     const display = document.getElementById('display');
-    display.innerText = number;
+    display.innerHTML = '';  // Clear the previous content
+
+    // Convert the number to a string and split it into individual digits
+    const digits = newNumber.toString().split('');
+
+    // Loop through each digit and create a div for it
+    digits.forEach(digit => {
+        const digitCell = document.createElement('div');  // Create a div for each digit
+        digitCell.classList.add('digit-cell');  // Add a class for styling the cell
+        digitCell.innerText = digit;  // Set the text inside the cell to the digit
+        display.appendChild(digitCell);  // Append the cell to the display div
+    });
+
+    number = newNumber;  // Update the global number variable
 }
 
 // Function to generate a random number
