@@ -1,74 +1,74 @@
 
 // Initialize random number to start with
-let number = Math.floor(Math.random() * 1000);
+// let number = Math.floor(Math.random() * 1000);
 
-// Function to update the display, placing each digit in its own cell
-function updateDisplay() {
-    const display = document.getElementById('display');
-    display.innerHTML = '';  // Clear the previous content
+class NumberDisplay {
+    constructor() {
+        this.number = Math.floor(Math.random() * 1000);
+    }
 
-    number = number.toString().split('');
+    // Function to update the display, placing each digit in its own cell
+    updateDisplay() {
+        const display = document.getElementById('display');
+        display.innerHTML = '';  // Clear the previous content
 
-    // Loop through each digit and create a div for it
-    digits.forEach(digit => {
-        const digitCell = document.createElement('div');  // Create a div for each digit
-        digitCell.classList.add('digit-cell');  // Add a class for styling the cell
-        digitCell.innerText = digit;  // Set the text inside the cell to the digit
-        display.appendChild(digitCell);  // Append the cell to the display div
-    });
+        const digits = this.number.toString().split('');
 
-    number = newNumber;  // Update the global number variable
-}
+        // Loop through each digit and create a div for it
+        digits.forEach(digit => {
+            const digitCell = document.createElement('div');  // Create a div for each digit
+            digitCell.classList.add('digit-cell');  // Add a class for styling the cell
+            digitCell.innerText = digit;  // Set the text inside the cell to the digit
+            display.appendChild(digitCell);  // Append the cell to the display div
+        });
+    }
 
-// Function to generate a random number
-function randomNumber() {
-    number = Math.floor(Math.random() * 1000); 
-    updateDisplay();
-}
+    randomNumber() {
+        this.number = Math.floor(Math.random() * 1000);
+        this.updateDisplay();
+    }
 
-// Function to add 1
-function addOne() {
-    number += 1;
-    updateDisplay();
-}
+    addOne() {
+        this.number += 1;
+        this.updateDisplay();
+    }
 
-// Function to multiply by 11
-function multiplyByEleven() {
-    number *= 11;
-    number = Math.floor(number)
-    updateDisplay();
-}
+    multiplyByEleven() {
+        this.number *= 11;
+        this.number = Math.floor(number)
+        this.updateDisplay();
+    }
 
-// Function to divide by 9
-function divideByNine() {
-    number /= 9;
-    number = Math.floor(number)
-    updateDisplay();
-}
+    divideByNine() {
+        this.number /= 9;
+        this.number = Math.floor(number)
+        this.updateDisplay();
+    }
 
-function createButtons() {
-    const controlsDiv = document.getElementById('controls');
+    createButtons() {
+        const controlsDiv = document.getElementById('controls');
+    
+        const buttons = [
+            { text: 'Random', action: this.randomNumber.bind(this) },
+            { text: '+1', action: this.addOne.bind(this) },
+            { text: 'x 11', action: this.multiplyByEleven.bind(this) },
+            { text: '/ 9', action: this.divideByNine.bind(this) }
+        ];
+    
+        buttons.forEach(btnInfo => {
+            const button = document.createElement('button');
+            button.innerText = btnInfo.text;
+            button.addEventListener('click', btnInfo.action);
+            controlsDiv.appendChild(button);
+        });
+    }
 
-    const buttons = [
-        { text: 'Random', action: randomNumber },
-        { text: '+1', action: addOne },
-        { text: 'x 11', action: multiplyByEleven },
-        { text: '/ 9', action: divideByNine}
-    ];
-
-    buttons.forEach(btnInfo => {
-        const button = document.createElement('button');
-        button.innerText = btnInfo.text;
-        button.addEventListener('click', btnInfo.action);
-        controlsDiv.appendChild(button);
-    });
-}
-
-// Initialize the application
-function init() {
-    updateDisplay();
-    createButtons();
+    init() {
+        this.updateDisplay();
+        this.createButtons();
+    }
 }
 
 // Run init when the window loads
-window.onload = init;
+const numberDisplay = new NumberDisplay();
+window.onload = () => numberDisplay().init();
