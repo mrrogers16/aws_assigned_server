@@ -3,47 +3,24 @@
 let number = Math.floor(Math.random() * 1000);
 
 // Function to update the display with animated digits
-function updateDisplay(oldNumber, newNumber) 
-{
+function updateDisplay(newNumber) {
     const display = document.getElementById('display');
-    const oldDigits = oldNumber.toString().padStart(4, '0').split('');  // Pad to handle leading zeros
-    const newDigits = newNumber.toString().padStart(4, '0').split('');
+    const newDigits = newNumber.toString().padStart(4, '0').split(''); // Ensure 4 digits
 
-    // Create digit cells or reuse existing ones
-    for (let i = 0; i < newDigits.length; i++) 
-    {
-        let digitCell = display.children[i];
+    // Clear previous display if needed
+    display.innerHTML = '';
 
-        if (!digitCell) {
-            // If there are no existing digit cells, create new ones
-            digitCell = document.createElement('div');
-            digitCell.classList.add('digit-cell');
-            const digit = document.createElement('div');
-            digit.classList.add('digit');
-            digitCell.appendChild(digit);
-            display.appendChild(digitCell);
-        }
+    // Create 4 fixed boxes for the digits
+    newDigits.forEach(digit => {
+        const digitCell = document.createElement('div');
+        digitCell.classList.add('digit-cell');
+        digitCell.innerText = digit; // Set the digit inside the box
+        display.appendChild(digitCell);
+    });
 
-        const currentDigit = digitCell.querySelector('.digit');
-        
-        // If the digit changed, animate it
-        if (oldDigits[i] !== newDigits[i]) 
-        {
-            currentDigit.classList.add('slide-out');
-            
-            setTimeout(() => 
-            {
-                currentDigit.innerText = newDigits[i];
-                currentDigit.classList.remove('slide-out');
-                currentDigit.classList.add('slide-in');
-                setTimeout(() => {
-                    currentDigit.classList.remove('slide-in');
-                }, 500);
-            }, 500);
-        }
-    }
+    // Update the global number
+    number = newNumber;
 }
-
 
 // Function to generate a random number
 function randomNumber() {
