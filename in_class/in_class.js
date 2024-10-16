@@ -2,10 +2,6 @@
 // Initialize random number to start with
 let number = Math.floor(Math.random() * 1000);
 
-// Function to update the display
-// Initialize random number to start with
-let number = Math.floor(Math.random() * 1000);
-
 // Function to update the display with animated digits
 function updateDisplay() 
 {
