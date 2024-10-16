@@ -2,23 +2,9 @@
 // Initialize random number to start with
 let number = Math.floor(Math.random() * 1000);
 
-// Function to update the display with animated digits
 function updateDisplay(newNumber) {
     const display = document.getElementById('display');
-    const newDigits = newNumber
-
-    // Clear previous display if needed
-    display.innerHTML = '';
-
-    // Create 4 fixed boxes for the digits
-    newDigits.forEach(digit => {
-        const digitCell = document.createElement('div');
-        digitCell.classList.add('digit-cell');
-        digitCell.innerText = digit; // Set the digit inside the box
-        display.appendChild(digitCell);
-    });
-
-    // Update the global number
+    display.innerText = newNumber;
     number = newNumber;
 }
 
