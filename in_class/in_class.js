@@ -3,8 +3,40 @@
 let number = Math.floor(Math.random() * 1000);
 
 // Function to update the display
-function updateDisplay() {
-    document.getElementById('display').innerText = number;
+// Initialize random number to start with
+let number = Math.floor(Math.random() * 1000);
+
+// Function to update the display with animated digits
+function updateDisplay() 
+{
+    const display = document.getElementById('display');
+    const oldDigits = number.toString().split('');
+    const newDigits = number.toString().split('');
+
+    // Clear previous digits
+    display.innerHTML = '';
+
+    // Create digit cells for new number
+    newDigits.forEach((digit) => 
+    {
+        const digitCell = document.createElement('div');
+        digitCell.classList.add('digit-cell');
+
+        // Create the digit element
+        const newDigit = document.createElement('div');
+        newDigit.classList.add('digit');
+        newDigit.innerText = digit;
+
+        // Animate the digit sliding in
+        newDigit.classList.add('slide-in');
+        setTimeout(() => 
+        {
+            newDigit.classList.remove('slide-in');
+        }, 500);
+
+        digitCell.appendChild(newDigit);
+        display.appendChild(digitCell);
+    });
 }
 
 // Function to generate a random number
