@@ -1,6 +1,6 @@
 
 // Initialize random number to start with
-let number = Math.floor(Math.random());
+let number = Math.floor(Math.random() * 1000);
 
 // Function to update the display
 function updateDisplay() {
@@ -9,7 +9,7 @@ function updateDisplay() {
 
 // Function to generate a random number
 function randomNumber() {
-    number = Math.floor(Math.random()); 
+    number = Math.floor(Math.random() * 1000); 
     updateDisplay();
 }
 
