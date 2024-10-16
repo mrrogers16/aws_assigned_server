@@ -1,0 +1,53 @@
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Center everything in the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Style for the display area */
+#display {
+    width: 300px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Style for the controls (buttons) */
+#controls {
+    display: flex;
+    justify-content: space-around;
+    width: 320px;
+}
+
+/* Style for the buttons */
+#controls button {
+    padding: 10px 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#controls button:hover {
+    background-color: #0056b3;
+}
