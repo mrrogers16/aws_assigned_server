@@ -5,7 +5,7 @@ let number = Math.floor(Math.random() * 1000);
 // Function to update the display with animated digits
 function updateDisplay(newNumber) {
     const display = document.getElementById('display');
-    const newDigits = newNumber.toString().padStart(4, '0').split(''); // Ensure 4 digits
+    const newDigits = newNumber
 
     // Clear previous display if needed
     display.innerHTML = '';
