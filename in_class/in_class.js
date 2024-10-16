@@ -3,15 +3,11 @@
 let number = Math.floor(Math.random() * 1000);
 
 // Function to update the display, placing each digit in its own cell
-function updateDisplay(newNumber) {
+function updateDisplay() {
     const display = document.getElementById('display');
     display.innerHTML = '';  // Clear the previous content
 
-    // Convert the number to a string and split it into individual digits
-    if (isNaN(number)) {
-        newNumber = 0;
-    }
-    const digits = newNumber.toString().split('');
+    number = number.toString().split('');
 
     // Loop through each digit and create a div for it
     digits.forEach(digit => {
