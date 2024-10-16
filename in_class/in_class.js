@@ -4,8 +4,7 @@ let number = Math.floor(Math.random() * 1000);
 
 function updateDisplay(newNumber) {
     const display = document.getElementById('display');
-    display.innerText = newNumber;
-    number = newNumber;
+    display.innerText = number;
 }
 
 // Function to generate a random number
