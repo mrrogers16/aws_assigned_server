@@ -16,6 +16,8 @@ function updateDisplay()
     // Clear previous digits
     display.innerHTML = '';
 
+
+    //TESTTEST
     // Create digit cells for new number
     newDigits.forEach((digit) => 
     {
