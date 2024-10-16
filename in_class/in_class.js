@@ -8,6 +8,9 @@ function updateDisplay(newNumber) {
     display.innerText = '';  // Clear the previous content
 
     // Convert the number to a string and split it into individual digits
+    if (isNaN(number)) {
+        newNumber = 0;
+    }
     const digits = newNumber.toString().split('');
 
     // Loop through each digit and create a div for it
