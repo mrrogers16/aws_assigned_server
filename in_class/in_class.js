@@ -22,12 +22,14 @@ function addOne() {
 // Function to multiply by 11
 function multiplyByEleven() {
     number *= 11;
+    number = Math.floor(number)
     updateDisplay();
 }
 
 // Function to divide by 9
 function divideByNine() {
     number /= 9;
+    number = Math.floor(number)
     updateDisplay();
 }
 
