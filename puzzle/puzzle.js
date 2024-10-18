@@ -35,13 +35,6 @@ class Puzzle
         };
     }
 
-    init() 
-    {
-        this.createTiles();
-        this.render();
-        this.shuffle();  // Shuffle after rendering
-    }
-
     createTiles() 
     {
         let tileNumber = 1;
