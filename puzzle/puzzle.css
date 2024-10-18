@@ -31,6 +31,7 @@ body
     width: 100px;
     height: 100px;
     background-size: 400px 400px;
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
     position: absolute;
