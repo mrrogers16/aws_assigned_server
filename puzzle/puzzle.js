@@ -212,5 +212,5 @@ class Tile
 document.addEventListener('DOMContentLoaded', () => 
 {
     const puzzleContainer = document.getElementById('puzzle-container');
-    const puzzle = new Puzzle(puzzleContainer, 'your-image-url.jpg');  // <-- Replace this with your image URL
+    const puzzle = new Puzzle(puzzleContainer, 'utsa_logo.jpg');  // <-- Replace this with your image URL
 });
