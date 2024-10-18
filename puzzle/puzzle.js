@@ -19,20 +19,23 @@ class Puzzle
         image.onload = () => 
         {
             // Calculate tile size based on the image dimensions
-            this.imageWidth = image.naturalWidth;
-            this.imageHeight = image.naturalHeight;
-
-            // Ensure the image fits within the puzzle grid
-            this.tileWidth = this.imageWidth / this.size;
-            this.tileHeight = this.imageHeight / this.size;
+            this.tileWidth = image.naturalWidth / this.size;
+            this.tileHeight = image.naturalHeight / this.size;
 
             // Set the container size dynamically
-            this.container.style.width = `${this.imageWidth}px`;
-            this.container.style.height = `${this.imageHeight}px`;
+            this.container.style.width = `${image.naturalWidth}px`;
+            this.container.style.height = `${image.naturalHeight}px`;
 
             // Initialize and render the puzzle
             this.init();
         };
+    }
+
+    init() 
+    {
+        this.createTiles();
+        this.render();
+        this.shuffle();  // Shuffle after rendering
     }
 
     createTiles() 
@@ -44,13 +47,15 @@ class Puzzle
             for (let x = 0; x < this.size; x++) 
             {
                 const isLastTile = (x === this.size - 1 && y === this.size - 1);
-                if (isLastTile) 
-                {
-                    const emptyTile = new Tile(null, x, y, this.imageUrl, this.tileWidth, this.tileHeight, true);
-                    this.tiles.push(emptyTile);
-                    continue;
-                }
-                const tile = new Tile(tileNumber++, x, y, this.imageUrl, this.tileWidth, this.tileHeight);
+                const tile = new Tile(
+                    isLastTile ? null : tileNumber++,  // Tile number, null for the hidden tile
+                    x, 
+                    y, 
+                    this.imageUrl, 
+                    this.tileWidth, 
+                    this.tileHeight, 
+                    isLastTile
+                );
                 this.tiles.push(tile);
             }
         }
@@ -73,10 +78,7 @@ class Puzzle
 
         const shuffleStep = () => 
         {
-            if (currentMove >= moveCount) 
-            {
-                return;
-            }
+            if (currentMove >= moveCount) return;
 
             const possibleMoves = this.getPossibleMoves();
             const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
@@ -114,8 +116,7 @@ class Puzzle
 
         if (Math.abs(tile.x - x) + Math.abs(tile.y - y) === 1) 
         {
-            this.emptyPosition.x = tile.x;
-            this.emptyPosition.y = tile.y;
+            this.emptyPosition = { x: tile.x, y: tile.y };
             tile.setPosition(x, y);
 
             if (checkWin) this.checkWin();
@@ -124,27 +125,17 @@ class Puzzle
 
     checkWin() 
     {
-        let isSolved = true;
-
-        for (let i = 0; i < this.tiles.length; i++) 
+        const isSolved = this.tiles.every(tile => 
         {
-            const tile = this.tiles[i];
-            if (tile.isHidden) continue; // Skip the hidden tile
+            if (tile.isHidden) return true; // Skip the hidden tile
 
             const correctX = (tile.number - 1) % this.size;
             const correctY = Math.floor((tile.number - 1) / this.size);
 
-            if (tile.x !== correctX || tile.y !== correctY) 
-            {
-                isSolved = false;
-                break;
-            }
-        }
+            return tile.x === correctX && tile.y === correctY;
+        });
 
-        if (isSolved) 
-        {
-            alert('Congratulations! You solved the puzzle!');
-        }
+        if (isSolved) alert('Congratulations! You solved the puzzle!');
     }
 }
 
@@ -165,10 +156,7 @@ class Tile
     {
         const tile = document.createElement('div');
         tile.classList.add('tile');
-        if (this.isHidden) 
-        {
-            tile.classList.add('hidden');
-        }
+        if (this.isHidden) tile.classList.add('hidden');
 
         // Set background image and position
         tile.style.backgroundImage = `url(${imageUrl})`;
@@ -189,16 +177,6 @@ class Tile
     updateTilePosition() 
     {
         this.tileElement.style.transform = `translate(${this.x * (this.tileWidth + 2)}px, ${this.y * (this.tileHeight + 2)}px)`;
-    }
-
-    hide() 
-    {
-        this.tileElement.classList.add('hidden');
-    }
-
-    show() 
-    {
-        this.tileElement.classList.remove('hidden');
     }
 }
 
