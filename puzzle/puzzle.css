@@ -1,13 +1,10 @@
-* 
-{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-
-body 
-{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,30 +12,17 @@ body
     background-color: #f0f0f0;
 }
 
-#puzzle-container 
-{
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: repeat(4, 100px);
-    gap: 2px;
+#puzzle-container {
     position: relative;
-    width: 404px;
-    height: 404px;
 }
 
-.tile 
-{
-    width: 100px;
-    height: 100px;
-    background-size: 400px 400px;
-    border-color: black;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.tile {
     position: absolute;
+    border: 1px solid black;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
-.tile.hidden 
-{
-    visibility: hidden;
+.tile.hidden {
+    display: none;
 }
