@@ -6,7 +6,7 @@ class Puzzle {
         this.emptyPosition = { x: size - 1, y: size - 1 };
         this.imageUrl = imageUrl;
 
-        // Dynamically calculate tile size after the image loads
+        // Load image and initialize the puzzle
         this.loadImageAndInit();
     }
 
@@ -29,8 +29,8 @@ class Puzzle {
 
     init() {
         this.createTiles();
+        this.shuffle();
         this.render();
-        this.shuffle();  // Shuffle after rendering
     }
 
     createTiles() {
@@ -53,34 +53,14 @@ class Puzzle {
         }
     }
 
-    render() {
-        // Clear the container?
-        this.container.innerHTML = '';
-
-        this.tiles.forEach(tile => {
-            this.container.appendChild(tile.tileElement);
-            tile.updateTilePosition();
-            tile.tileElement.addEventListener('click', () => this.moveTile(tile));
-        });
-    }
-
     shuffle() {
-        let moveCount = 100;  // Number of shuffling moves
-        let currentMove = 0;
-
-        const shuffleStep = () => {
-            if (currentMove >= moveCount) return;
-
+        // Perform a number of random valid moves to shuffle the puzzle
+        const moves = 1000; // Number of shuffle moves
+        for (let i = 0; i < moves; i++) {
             const possibleMoves = this.getPossibleMoves();
             const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
-
-            this.moveTile(randomMove, false);  // Move tile without checking win condition
-            currentMove++;
-
-            setTimeout(shuffleStep, 200);  // Delay of 200ms between moves
-        };
-
-        shuffleStep();  // Start the first shuffle step
+            this.moveTile(randomMove, false); // Move tile without checking win condition
+        }
     }
 
     getPossibleMoves() {
@@ -103,11 +83,26 @@ class Puzzle {
         const { x, y } = this.emptyPosition;
 
         if (Math.abs(tile.x - x) + Math.abs(tile.y - y) === 1) {
-            this.emptyPosition = { x: tile.x, y: tile.y };
+            // Swap tile position with empty position
+            const tempX = tile.x;
+            const tempY = tile.y;
+
             tile.setPosition(x, y);
+            this.emptyPosition = { x: tempX, y: tempY };
 
             if (checkWin) this.checkWin();
         }
+    }
+
+    render() {
+        this.container.innerHTML = '';
+        this.tiles.forEach(tile => {
+            if (!tile.isHidden) {
+                this.container.appendChild(tile.tileElement);
+                tile.updateTilePosition();
+                tile.tileElement.addEventListener('click', () => this.moveTile(tile));
+            }
+        });
     }
 
     checkWin() {
@@ -138,11 +133,11 @@ class Tile {
     createTileElement(imageUrl) {
         const tile = document.createElement('div');
         tile.classList.add('tile');
-        if (this.isHidden) tile.classList.add('hidden');
 
         // Set background image and position
         tile.style.backgroundImage = `url(${imageUrl})`;
-        tile.style.backgroundPosition = `${-this.x * this.tileWidth}px ${-this.y * this.tileHeight}px`;
+        tile.style.backgroundPosition = `-${this.x * this.tileWidth}px -${this.y * this.tileHeight}px`;
+        tile.style.backgroundSize = `${this.tileWidth * 4}px ${this.tileHeight * 4}px`;
         tile.style.width = `${this.tileWidth}px`;
         tile.style.height = `${this.tileHeight}px`;
 
@@ -156,11 +151,12 @@ class Tile {
     }
 
     updateTilePosition() {
-        this.tileElement.style.transform = `translate(${this.x * (this.tileWidth + 2)}px, ${this.y * (this.tileHeight + 2)}px)`;
+        this.tileElement.style.left = `${this.x * this.tileWidth}px`;
+        this.tileElement.style.top = `${this.y * this.tileHeight}px`;
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const puzzleContainer = document.getElementById('puzzle-container');
-    const puzzle = new Puzzle(puzzleContainer, 'utsa_logo.jpg');  // <-- Replace this with your image URL
+    const puzzle = new Puzzle(puzzleContainer, 'utsa_logo.jpg');  // Replace with your image URL
 });
