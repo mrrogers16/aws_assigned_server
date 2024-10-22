@@ -1,7 +1,5 @@
-class Puzzle 
-{
-    constructor(container, imageUrl, size = 4) 
-    {
+class Puzzle {
+    constructor(container, imageUrl, size = 4) {
         this.container = container;
         this.size = size;
         this.tiles = [];
@@ -12,12 +10,10 @@ class Puzzle
         this.loadImageAndInit();
     }
 
-    loadImageAndInit() 
-    {
+    loadImageAndInit() {
         const image = new Image();
         image.src = this.imageUrl;
-        image.onload = () => 
-        {
+        image.onload = () => {
             // Calculate tile size based on the image dimensions
             this.tileWidth = image.naturalWidth / this.size;
             this.tileHeight = image.naturalHeight / this.size;
@@ -31,29 +27,25 @@ class Puzzle
         };
     }
 
-    init() 
-    {
+    init() {
         this.createTiles();
         this.render();
         this.shuffle();  // Shuffle after rendering
     }
 
-    createTiles() 
-    {
+    createTiles() {
         let tileNumber = 1;
 
-        for (let y = 0; y < this.size; y++) 
-        {
-            for (let x = 0; x < this.size; x++) 
-            {
+        for (let y = 0; y < this.size; y++) {
+            for (let x = 0; x < this.size; x++) {
                 const isLastTile = (x === this.size - 1 && y === this.size - 1);
                 const tile = new Tile(
                     isLastTile ? null : tileNumber++,  // Tile number, null for the hidden tile
-                    x, 
-                    y, 
-                    this.imageUrl, 
-                    this.tileWidth, 
-                    this.tileHeight, 
+                    x,
+                    y,
+                    this.imageUrl,
+                    this.tileWidth,
+                    this.tileHeight,
                     isLastTile
                 );
                 this.tiles.push(tile);
@@ -61,23 +53,22 @@ class Puzzle
         }
     }
 
-    render() 
-    {
-        this.tiles.forEach(tile => 
-        {
+    render() {
+        // Clear the container?
+        this.container.innerHTML = '';
+
+        this.tiles.forEach(tile => {
             this.container.appendChild(tile.tileElement);
             tile.updateTilePosition();
             tile.tileElement.addEventListener('click', () => this.moveTile(tile));
         });
     }
 
-    shuffle() 
-    {
+    shuffle() {
         let moveCount = 100;  // Number of shuffling moves
         let currentMove = 0;
 
-        const shuffleStep = () => 
-        {
+        const shuffleStep = () => {
             if (currentMove >= moveCount) return;
 
             const possibleMoves = this.getPossibleMoves();
@@ -92,8 +83,7 @@ class Puzzle
         shuffleStep();  // Start the first shuffle step
     }
 
-    getPossibleMoves() 
-    {
+    getPossibleMoves() {
         const { x, y } = this.emptyPosition;
         const possibleMoves = [];
 
@@ -105,17 +95,14 @@ class Puzzle
         return possibleMoves;
     }
 
-    getTileAtPosition(x, y) 
-    {
+    getTileAtPosition(x, y) {
         return this.tiles.find(tile => tile.x === x && tile.y === y);
     }
 
-    moveTile(tile, checkWin = true) 
-    {
+    moveTile(tile, checkWin = true) {
         const { x, y } = this.emptyPosition;
 
-        if (Math.abs(tile.x - x) + Math.abs(tile.y - y) === 1) 
-        {
+        if (Math.abs(tile.x - x) + Math.abs(tile.y - y) === 1) {
             this.emptyPosition = { x: tile.x, y: tile.y };
             tile.setPosition(x, y);
 
@@ -123,10 +110,8 @@ class Puzzle
         }
     }
 
-    checkWin() 
-    {
-        const isSolved = this.tiles.every(tile => 
-        {
+    checkWin() {
+        const isSolved = this.tiles.every(tile => {
             if (tile.isHidden) return true; // Skip the hidden tile
 
             const correctX = (tile.number - 1) % this.size;
@@ -139,10 +124,8 @@ class Puzzle
     }
 }
 
-class Tile 
-{
-    constructor(number, x, y, imageUrl, tileWidth, tileHeight, isHidden = false) 
-    {
+class Tile {
+    constructor(number, x, y, imageUrl, tileWidth, tileHeight, isHidden = false) {
         this.number = number;
         this.x = x;
         this.y = y;
@@ -152,8 +135,7 @@ class Tile
         this.tileElement = this.createTileElement(imageUrl);
     }
 
-    createTileElement(imageUrl) 
-    {
+    createTileElement(imageUrl) {
         const tile = document.createElement('div');
         tile.classList.add('tile');
         if (this.isHidden) tile.classList.add('hidden');
@@ -167,21 +149,18 @@ class Tile
         return tile;
     }
 
-    setPosition(x, y) 
-    {
+    setPosition(x, y) {
         this.x = x;
         this.y = y;
         this.updateTilePosition();
     }
 
-    updateTilePosition() 
-    {
+    updateTilePosition() {
         this.tileElement.style.transform = `translate(${this.x * (this.tileWidth + 2)}px, ${this.y * (this.tileHeight + 2)}px)`;
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => 
-{
+document.addEventListener('DOMContentLoaded', () => {
     const puzzleContainer = document.getElementById('puzzle-container');
     const puzzle = new Puzzle(puzzleContainer, 'utsa_logo.jpg');  // <-- Replace this with your image URL
 });
