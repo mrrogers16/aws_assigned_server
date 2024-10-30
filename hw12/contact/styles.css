@@ -151,11 +151,18 @@ select {
     font-size: 1em;
 }
 
+form label,
+form input[type="radio"],
+form input[type="checkbox"] {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
 /* Radio buttons and checkboxes */
 input[type="radio"],
 input[type="checkbox"] {
-    margin-left: 15px;
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 /* Form buttons */
