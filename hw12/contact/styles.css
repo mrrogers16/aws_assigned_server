@@ -294,6 +294,14 @@ a:hover {
     text-decoration: underline;
 }
 
+.invalid {
+    border-color: red;
+}
+
+.valid {
+    border-color: green;
+}
+
 /* Responsive adjustments for form */
 @media (max-width: 600px) {
     form {

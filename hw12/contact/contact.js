@@ -23,6 +23,27 @@ class ContactForm {
         this.toggleContactFields('Email');
     }
 
+    setupContactMethodToggle() {
+        const contactMethods = document.getElementsByName('contact_method');
+        contactMethods.forEach((radio) => {
+            radio.addEventListener('change', (event) => {
+                this.toggleContactFields(event.target.value);
+            });
+        });
+
+    }
+
+    setupFormValidation() {
+        this.contactForm.addEventListener("submit", (event) => {
+            const invalidFields = this.validateForm();
+            this.displayValidationMessage(invalidFields, event);
+        });
+    }
+
+
+
+
+
     toggleContactFields(contactMethod) {
         if (contactMethod === "Email") {
             this.emailField.disabled = false;
@@ -34,26 +55,11 @@ class ContactForm {
         }
     }
 
-    setupFormValidation() {
-        this.contactForm.addEventListener("submit", (event) => {
-            const invalidFields = this.validateForm();
-            this.displayValidationMessage(invalidFields, event);
-        });
-    }
-
     getSelectedContactMethod() {
         return document.querySelector("input[name='contact_method']:checked").value;
     }
 
-    setupContactMethodToggle() {
-        const contactMethods = document.getElementsByName('contact_method');
-        contactMethods.forEach((radio) => {
-            radio.addEventListener('change', (event) => {
-                this.toggleContactFields(event.target.value);
-            });
-        });
 
-    }
 
     setFieldInvalid(fieldName) {
         const field = this.contactForm[fieldName];
@@ -85,7 +91,7 @@ class ContactForm {
     validateForm() {
         const invalidFields = [];
         // First Name
-        if (!this.isValidName(this.contactForm.['first-name'].value)) {
+        if (!this.isValidName(this.contactForm['first-name'].value)) {
             invalidFields.push('First Name');
             this.setFieldInvalid('first-name');
         }
@@ -93,7 +99,7 @@ class ContactForm {
             this.setFieldValid('first-name');
         }
         // Last Name
-        if (!this.isValidName(this.contactForm.['last-name'].value)) {
+        if (!this.isValidName(this.contactForm['last-name'].value)) {
             invalidFields.push('Last Name');
             this.setFieldInvalid('last-name');
         }
