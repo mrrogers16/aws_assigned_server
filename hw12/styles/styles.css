@@ -1,3 +1,23 @@
+/* Main container to box everything so it looks nice. Page it too big/spread out to look good. This may help */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fef9f4;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* General text alignment */
+.container h1,
+.container h2,
+.container p,
+.container form,
+.container nav {
+    text-align: left;
+    margin: 0 auto;
+}
+
 /* Body background color */
 body {
     background-color: #f7e8d5;
