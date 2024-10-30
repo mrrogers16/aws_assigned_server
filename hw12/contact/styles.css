@@ -151,12 +151,15 @@ select {
     font-size: 1em;
 }
 
-form label,
-form input[type="radio"],
-form input[type="checkbox"] {
-    display: inline-flex;
+form div {
+    margin-bottom: 10px;
+    display: flex;
     align-items: center;
-    margin-right: 15px;
+    ;
+}
+
+form label {
+    margin-left: 5px;
 }
 
 /* Radio buttons and checkboxes */
