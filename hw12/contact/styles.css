@@ -155,6 +155,8 @@ select {
 input[type="radio"],
 input[type="checkbox"] {
     margin-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Form buttons */
