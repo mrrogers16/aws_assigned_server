@@ -1,12 +1,11 @@
-/* Base styling for body and fonts */
+/* Body background color */
 body {
-    font-family: 'Georgia', serif;
-    /* A classic, warm font for a cozy feel */
-    line-height: 1.6;
-    background-color: #f8e5d3;
-    /* Light fudge color for background */
+    background-color: #f7e8d5;
+    /* Warm beige, like fudge */
     color: #4b2e2e;
-    /* Dark chocolate color for text */
+    font-family: 'Georgia', serif;
+    /* Classic, warm font */
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
@@ -24,7 +23,13 @@ header {
     /* More playful, readable font for header */
 }
 
-/* Navigation links */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
 nav a {
     text-decoration: none;
     color: #8b5e3b;
@@ -55,6 +60,41 @@ main {
     max-width: 900px;
 }
 
+h1 {
+    text-align: center;
+    color: #8b5e3b;
+    font-size: 2.5em;
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Form Title Styling */
+h2 {
+    text-align: center;
+    color: #8b5e3b;
+    /* Dark fudge brown */
+    font-size: 2.2em;
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Underline effect for the title */
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #d2a77d;
+    /* Caramel color */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
 /* Image styling */
 img {
     max-width: 100%;
@@ -64,6 +104,7 @@ img {
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Section headings */
 h2 {
@@ -165,4 +206,17 @@ a:hover {
     color: #3a1f1f;
     /* Dark chocolate hover effect */
     text-decoration: underline;
+}
+
+/* Responsive adjustments for form */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
