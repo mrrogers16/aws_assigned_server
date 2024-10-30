@@ -57,16 +57,18 @@ class ContactForm {
 
     setFieldInvalid(fieldName) {
         const field = this.contactForm[fieldName];
-        field.style.borderColor = 'red';
+        field.classList.add('invalid');
+        field.classList.remove('valid');
     }
 
     setFieldValid(fieldName) {
         const field = this.contactForm[fieldName];
-        field.style.borderColor = 'green';
+        field.classList.add('valid');
+        field.classList.remove('invalid');
     }
 
     isValidName(name) {
-        const nameRegex = /^[A-za-z'-]{2,}$/;
+        const nameRegex = /^[A-Za-z'-]{2,}$/;
         return nameRegex.test(name.trim());
     }
 
@@ -76,14 +78,14 @@ class ContactForm {
     }
 
     isValidPhoneNumber(phone) {
-        const phoneRegex = /^\(\d{3}\) \d{3}=\d{4}$/;
+        const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
         return phoneRegex.test(phone.trim());
     }
 
     validateForm() {
         const invalidFields = [];
         // First Name
-        if (!this.isValidName(this.contactForm.[first_name].value)) {
+        if (!this.isValidName(this.contactForm.['first-name'].value)) {
             invalidFields.push('First Name');
             this.setFieldInvalid('first-name');
         }
@@ -91,7 +93,7 @@ class ContactForm {
             this.setFieldValid('first-name');
         }
         // Last Name
-        if (!this.isValidName(this.contactForm.[last_name].value)) {
+        if (!this.isValidName(this.contactForm.['last-name'].value)) {
             invalidFields.push('Last Name');
             this.setFieldInvalid('last-name');
         }
@@ -139,7 +141,7 @@ class ContactForm {
         return invalidFields;
     }
 
-    displayValidationMessage() {
+    displayValidationMessage(invalidFields, event) {
         if (invalidFields.length > 0) {
             event.preventDefault(); // Prevent form submission
             this.validationMessage.innerHTML = 'Please correct the following fields: ' + invalidFields.join(', ');
