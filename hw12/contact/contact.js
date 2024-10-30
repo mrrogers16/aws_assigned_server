@@ -47,11 +47,15 @@ class ContactForm {
     toggleContactFields(contactMethod) {
         if (contactMethod === "Email") {
             this.emailField.disabled = false;
+            this.emailField.required = true;
             this.phoneField.disabled = true;
+            this.phoneField.required = false;
         }
         else {
             this.emailField.disabled = true;
+            this.emailField.required = false;
             this.phoneField.disabled = false;
+            this.phoneField.required = true;
         }
     }
 
