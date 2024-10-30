@@ -312,6 +312,10 @@ a:hover {
     border-color: green;
 }
 
+.centered-link {
+    text-align: center;
+}
+
 /* Responsive adjustments for form */
 @media (max-width: 600px) {
     form {
