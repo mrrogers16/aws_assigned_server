@@ -13,68 +13,70 @@
 
 
 <body>
-    <h1> Contact Sargent's Sweets</h1>
+    <div class="container">
+        <h1> Contact Sargent's Sweets</h1>
 
-    <nav>
-        <a href="../index.html">Home</a> |
-        <a href="../products/classic_chocolate/index.html">Classic Chocolate</a> |
-        <a href="../products/cookies_and_cream/index.html">Cookies and Cream</a> |
-        <a href="../products/peanut_butter_crunch/index.html"">Peanut Butter Crunch</a> |
+        <nav>
+            <a href="../index.html">Home</a> |
+            <a href="../products/classic_chocolate/index.html">Classic Chocolate</a> |
+            <a href="../products/cookies_and_cream/index.html">Cookies and Cream</a> |
+            <a href="../products/peanut_butter_crunch/index.html"">Peanut Butter Crunch</a> |
         <a href=" ../services/catering/index.html">Catering Services</a> |
-        <a href="./contact.html">Contact Us</a>
-    </nav>
+            <a href="./contact.html">Contact Us</a>
+        </nav>
 
-    <p id="validation-message" class="error"></p>
-    <form id="contact-form" action="/" method="GET">
+        <p id="validation-message" class="error"></p>
+        <form id="contact-form" action="/" method="GET">
 
-        <!-- First Name -->
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" name="first-name" required />
+            <!-- First Name -->
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required />
 
-        <!-- Last Name -->
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" name="last-name" required />
+            <!-- Last Name -->
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required />
 
-        <!-- Password -->
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" required />
+            <!-- Password -->
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required />
 
-        <!--Preferred Method of Communication-->
-        <label>Preferred Method of Communication:</label>
-        <input type="radio" id="voice" name="contact_method" value="Voice" />
-        <label for="voice">Voice</label>
-        <input type="radio" id="sms" name="contact_method" value="SMS" />
-        <label for="sms">SMS</label>
-        <input type="radio" id="email" name="contact_method" value="Email" checked />
-        <label for="email">Email</label>
+            <!--Preferred Method of Communication-->
+            <label>Preferred Method of Communication:</label>
+            <input type="radio" id="voice" name="contact_method" value="Voice" />
+            <label for="voice">Voice</label>
+            <input type="radio" id="sms" name="contact_method" value="SMS" />
+            <label for="sms">SMS</label>
+            <input type="radio" id="email" name="contact_method" value="Email" checked />
+            <label for="email">Email</label>
 
-        <!-- Email Address -->
-        <label for="email-address">Email:</label>
-        <input type="email" id="email-address" name="email" required />
+            <!-- Email Address -->
+            <label for="email-address">Email:</label>
+            <input type="email" id="email-address" name="email" required />
 
-        <!-- Phone Number-->
-        <label for="phone-number">Phone Number:</label>
-        <input type="text" id="phone-number" name="phone" />
+            <!-- Phone Number-->
+            <label for="phone-number">Phone Number:</label>
+            <input type="text" id="phone-number" name="phone" />
 
-        <!-- Products and Services Interested In Checkboxes-->
-        <label>Products/Services That Interest You:</label>
-        <input type="checkbox" id="fudge" name="interest" value="Fudge" />
-        <label for="fudge">Fudge</label>
-        <input type="checkbox" id="catering" name="interest" value="Catering" />
-        <label for="catering">Catering</label>
-        <input type="checkbox" id="custom-treats" name="interest" value="Custom Treats" />
-        <label for="custom-treats">Custom Treats</label>
+            <!-- Products and Services Interested In Checkboxes-->
+            <label>Products/Services That Interest You:</label>
+            <input type="checkbox" id="fudge" name="interest" value="Fudge" />
+            <label for="fudge">Fudge</label>
+            <input type="checkbox" id="catering" name="interest" value="Catering" />
+            <label for="catering">Catering</label>
+            <input type="checkbox" id="custom-treats" name="interest" value="Custom Treats" />
+            <label for="custom-treats">Custom Treats</label>
 
-        <!-- Message -->
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
+            <!-- Message -->
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
 
-        <!-- Submit/Reset -->
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+            <!-- Submit/Reset -->
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
 
-    </form>
-    <script src="contact.js"></script>
+        </form>
+        <script src="contact.js"></script>
 </body>
+</div>
 
 </html>
