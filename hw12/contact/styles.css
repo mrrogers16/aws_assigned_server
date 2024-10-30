@@ -23,7 +23,13 @@ header {
     /* More playful, readable font for header */
 }
 
-/* Navigation links */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
 nav a {
     text-decoration: none;
     color: #8b5e3b;
