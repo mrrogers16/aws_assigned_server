@@ -111,7 +111,7 @@ class ContactForm {
         const contactMethod = this.getSelectedContactMethod();
         // Email
         if (contactMethod === 'Email') {
-            if(!this.isValidEmail(this.emailField.value)) {
+            if (!this.isValidEmail(this.emailField.value)) {
                 invalidFields.push('Email');
                 this.setFieldInvalid('email-address');
             } else {
@@ -121,7 +121,7 @@ class ContactForm {
 
         // Phone Number
         if (contactMethod === 'Voice' || contactMethod === 'SMS') {
-            if(!this.isValidPhoneNumber(this.phoneField.value)) {
+            if (!this.isValidPhoneNumber(this.phoneField.value)) {
                 invalidFields.push('Phone Number');
                 this.setFieldInvalid('phone-number');
             } else {
@@ -149,11 +149,8 @@ class ContactForm {
             this.validationMessage.innerHTML = '';
         }
     }
-
-
-
-
-
-
-
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = new ContactForm('contact-form', 'validation-message');
+});
