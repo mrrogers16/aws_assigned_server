@@ -228,6 +228,16 @@ a:hover {
     text-decoration: underline;
 }
 
+.centered-text {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f4d4b2;
+    /* Light caramel background for emphasis */
+    color: #4b2e2e;
+    /* Dark chocolate text color */
+}
+
 /* Responsive adjustments for form */
 @media (max-width: 600px) {
     form {
@@ -238,15 +248,5 @@ a:hover {
     input[type="reset"] {
         width: 100%;
         margin: 10px 0;
-    }
-
-    .centered-text {
-        text-align: center;
-        font-weight: bold;
-        padding: 10px;
-        background-color: #f4d4b2;
-        /* Light caramel background for emphasis */
-        color: #4b2e2e;
-        /* Dark chocolate text color */
     }
 }
