@@ -1,6 +1,6 @@
 /* Main container to box everything so it looks nice. Page it too big/spread out to look good. This may help */
 .container {
-    max-width: 1000px;
+    max-width: 1250px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fef9f4;
