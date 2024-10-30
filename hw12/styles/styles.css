@@ -1,114 +1,168 @@
 /* Base styling for body and fonts */
-body 
-{
-    font-family: Arial, sans-serif;
+body {
+    font-family: 'Georgia', serif;
+    /* A classic, warm font for a cozy feel */
     line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #f8e5d3;
+    /* Light fudge color for background */
+    color: #4b2e2e;
+    /* Dark chocolate color for text */
     margin: 0;
     padding: 0;
 }
 
 /* Header */
-header 
-{
-    background-color: #4CAF50; /* Main theme color */
-    color: white;
+header {
+    background-color: #8b5e3b;
+    /* Dark fudge brown */
+    color: #fdf4e3;
+    /* Light creamy color for contrast */
     padding: 20px;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
+    font-family: 'Verdana', sans-serif;
+    /* More playful, readable font for header */
 }
 
 /* Navigation links */
-nav a 
-{
+nav a {
     text-decoration: none;
-    color: #4CAF50;
+    color: #8b5e3b;
+    /* Fudge brown color for links */
+    background-color: #f4d4b2;
+    /* Light caramel color for link background */
     font-weight: bold;
-    padding: 10px;
-    margin: 0 10px;
-    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 0 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-nav a:hover 
-{
-    background-color: #4CAF50;
-    color: white;
+nav a:hover {
+    background-color: #e8b985;
+    /* Slightly darker caramel for hover */
+    color: #3a1f1f;
 }
 
 /* Main content styling */
-main 
-{
+main {
     padding: 20px;
+    background-color: #fef9f4;
+    /* Creamy background to set off the main content */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 900px;
 }
 
 /* Image styling */
-img 
-{
+img {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 20px auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Section headings */
-h2 
-{
-    color: #4CAF50;
+h2 {
+    color: #8b5e3b;
+    /* Dark fudge brown */
     font-size: 1.8em;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #d2a77d;
+    /* Light caramel */
     padding-bottom: 5px;
     margin-top: 20px;
 }
 
+/* Paragraphs */
+p {
+    font-size: 1.1em;
+    margin: 15px 0;
+}
+
 /* Tables */
-table 
-{
+table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
+    background-color: #fef4e8;
+    /* Creamy table background */
 }
 
-th, td 
-{
+th,
+td {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #d2a77d;
+    /* Light caramel color for borders */
     text-align: left;
 }
 
-th 
-{
-    background-color: #f2f2f2;
-    color: #333;
+th {
+    background-color: #8b5e3b;
+    /* Dark fudge brown */
+    color: #fef9f4;
+    /* Light cream text */
     font-weight: bold;
 }
 
 /* Footer links */
-footer a 
-{
-    color: #4CAF50;
+footer a {
+    color: #8b5e3b;
     text-decoration: none;
 }
 
-footer a:hover 
-{
+footer a:hover {
     text-decoration: underline;
 }
 
 /* Additional styling for lists */
-ul, ol 
-{
+ul,
+ol {
     margin: 15px 0;
     padding-left: 20px;
+    color: #4b2e2e;
 }
 
 /* Footer */
-footer 
-{
-    background-color: #333;
-    color: white;
+footer {
+    background-color: #3a1f1f;
+    /* Darker chocolate brown */
+    color: #fdf4e3;
     padding: 10px;
     text-align: center;
+    font-size: 0.9em;
+}
+
+/* Button Styling */
+button {
+    background-color: #d2a77d;
+    /* Caramel color */
+    color: #4b2e2e;
+    /* Dark chocolate */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #c59362;
+    /* Slightly darker caramel on hover */
+}
+
+/* Additional fudge-themed accents for links */
+a {
+    color: #8b5e3b;
+    /* Fudge brown */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3a1f1f;
+    /* Dark chocolate hover effect */
+    text-decoration: underline;
 }
