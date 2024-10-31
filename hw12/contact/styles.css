@@ -305,11 +305,15 @@ a:hover {
 }
 
 .invalid {
-    border-color: red;
+    border: 2px solid #e63946;
+    background-color: #ffe6e6;
+    color: #e63946;
 }
 
 .valid {
-    border-color: green;
+    border: 2px solid #2a9d8f;
+    background-color: #e6ffe6;
+    color: #2a9d8f;
 }
 
 .centered-link {
