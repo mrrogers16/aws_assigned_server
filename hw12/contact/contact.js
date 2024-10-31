@@ -40,10 +40,6 @@ class ContactForm {
         });
     }
 
-
-
-
-
     toggleContactFields(contactMethod) {
         if (contactMethod === "Email") {
             this.emailField.disabled = false;
@@ -62,8 +58,6 @@ class ContactForm {
     getSelectedContactMethod() {
         return document.querySelector("input[name='contact_method']:checked").value;
     }
-
-
 
     setFieldInvalid(fieldName) {
         const field = this.contactForm[fieldName];
