@@ -1,16 +1,21 @@
 <?php
 
 // Handle Parameters
+// If parameter not set: default = 100
 function getParameter($name, $default = 100)
 {
+    // Check if parameter exists in $_GET array (url query string)
+    // $_GET is a superglobal
+    // isset checks if parameter is set in the query string
     return isset($_GET[$name]) ? (int)$_GET[$name] : $default;
 }
 
 function generateOddNumbers($count)
 {
-    $odds = [];
+    $odds = []; // Empty array to store odd numbers
+    // Start from 1, increment by 2 and add to array
     for ($i = 1; count($odds) < $count; $i += 2) {
-        $odds[] = $i;
+        $odds[] = $i; // Add current odd ($i) to odds array
     }
     return $odds;
 }
