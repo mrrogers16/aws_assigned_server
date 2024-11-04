@@ -27,8 +27,11 @@ sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/in_class/ /var/
 # Sync the puzzle directory to the web directory (in class assignment)
 sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/puzzle/ /var/www/html/puzzle/
 
-# Sync the hw08 directory to the web directory
+# Sync the hw12 directory to the web directory
 sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/hw12/ /var/www/html/hw12/
+
+# Sync the hw13 directory to the web directory
+sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/hw13/ /var/www/html/hw13/
 
 # Reload the Nginx service to apply changes
 sudo service nginx reload
