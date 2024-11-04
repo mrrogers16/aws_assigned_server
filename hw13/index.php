@@ -74,7 +74,7 @@ function generateHtmlDocument()
     echo "<title>PHP Assignment - Numbers</title>\n";
     echo "</head>\n";
     echo "<body>\n";
-    echo "<h1> PHP Assignment - Dynamic Numebr Generator</h1>\n";
+    echo "<h1> PHP Assignment - Dynamic Number Generator</h1>\n";
 
     // Generate Odd numbers
     echo "<h2>First $odd_count Odd Numbers</h2>\n";
@@ -88,11 +88,11 @@ function generateHtmlDocument()
 
     // Generate Prime numbers
     echo "<h2>First $prime_limit Prime Numbers</h2>\n";
-    $prime_limit = generatePrimeNumbers($prime_limit);
-    echo "<p>" . formatOutput($prime_limit) . "</p>\n";
+    $prime_numbers = generatePrimeNumbers($prime_limit);
+    echo "<p>" . formatOutput($prime_numbers) . "</p>\n";
 
     // Show php code
-    echo "<pre style='border:1px solid blue'>\n" . htmlspecialchars(file_get_contents(__FILE__)) . "\n</pre>\n" ;
+    echo "<pre style='border:1px solid blue'>\n" . htmlspecialchars(file_get_contents(__FILE__)) . "\n</pre>\n";
 
     echo "</body>\n";
     echo "</html>";
