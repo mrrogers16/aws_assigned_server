@@ -1,0 +1,64 @@
+/* General body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d3d3d3;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Screen class styling (Both Data and Result) */
+.screen {
+    background-color: white;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    font-size: 18px;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Screen class styling (Data) */
+#data {
+    border: 2px solid blue;
+    /*add blue border to data box per instructions*/
+    color: black;
+}
+
+/* Screen class styling (Result of las command) */
+#result {
+    border: 2px solid green;
+    /*add blue border to data box per instructions*/
+    color: black;
+}
+
+/*Button styling*/
+input[type="button"] {
+    background-color: #f5f5f5;
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    width: 150px;
+}
+
+/*Ensure buttons remain responsive*/
+@media (min-width: 600px) {
+    input[type="button"] {
+        width: 150px;
+        /*buttons stay same size*/
+    }
+}
+
+@media (max-width: 600px) {
+    input[type="button"] {
+        width: 100%;
+        /* full width buttons for smaller screens*/
+    }
+}
