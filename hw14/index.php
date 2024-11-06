@@ -9,6 +9,8 @@ if (!isset($_SESSION['programData'])) {
 }
 
 // Function retrieves current data to display
+// Concatinate using commas for now
+// Come back later to handle the final 'and' case
 function get_data() {
     return implode(', ', $_SESSION['programData']);
 }
@@ -27,7 +29,9 @@ function setData($msg, $data) {
 
 // Helper function to populate an array
 function populate($N, $fn) {
+    // Init empty array 
     $result = [];
+    // Loop to n calling fn(i) 
     for ($i = 0; $i < $N; $i++) {
         $result[] = $fn($i);
     }
@@ -50,6 +54,13 @@ function oddify() {
     setData('data has been modified', $_SESSION['programData']);
 }
 
+function incr() {
+    $_SESSION['programData'] = array_map(function($n) {
+        return $n + 1;
+    }, $_SESSION['programData']);
+    setData('data has been incremented', $_SESSION['programData']);
+}
+
 // Check if all elements are even
 function allEven() {
     $isAllEven = array_reduce($_SESSION['programData'], function($carry, $n) {
@@ -66,6 +77,7 @@ function allOdd() {
     }, true);
     setData('allOdd is ' . ($isAllOdd ? 'true' : 'false'), $_SESSION['programData']);
 }
+
 
 // Handle commands sent from the form
 if (isset($_GET['command'])) {
@@ -114,6 +126,8 @@ $debug = $_SESSION;
         <input type="submit" name="command" value="isEven"/>
         
         <input type="submit" name="command" value="isOdd"/>
+
+        <input type="submit" name="command" value="incr"/>
     </form>
 
     <code><pre><?= var_dump($debug); ?></pre></code>
