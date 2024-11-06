@@ -1,4 +1,6 @@
 <?php
+
+// Start session 
 session_start();
 
 // Initialize programData for our global variable like hw07 in session if not already set
@@ -8,7 +10,7 @@ if (!isset($_SESSION['programData'])) {
 
 // Function retrieves current data to display
 function get_data() {
-    return implode(' ', $_SESSION['programData']);
+    return implode(', ', $_SESSION['programData']);
 }
 
 // Function to return the last command's result message for display
@@ -84,7 +86,7 @@ if (isset($_GET['command'])) {
 }
 
 // Optional debug output for session data
-#$debug = $_SESSION;
+$debug = $_SESSION;
 
 ?>
 
