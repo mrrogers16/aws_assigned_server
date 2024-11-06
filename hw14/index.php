@@ -61,30 +61,40 @@ function incr() {
     setData('data has been incremented', $_SESSION['programData']);
 }
 
-// Check if all elements  in programData are even
+// Check if all elements in programData are even
 function allEven() {
+    $isAllEven = true; // Assume all elements are even initially
 
-    // Calculate the sum of all elements in programData
-    $sum = array_sum($_SESSION['programData']);
-    
-    // If the sum is even, all elements are even
-    $isAllEven = ($sum % 2 === 0);
-    
-    // Update session with the result message
+    // Iterate through each element in programData
+    foreach ($_SESSION['programData'] as $n) {
+        // If any element is odd, set $isAllEven to false and break out of the loop
+        if ($n % 2 !== 0) {
+            $isAllEven = false;
+            break;
+        }
+    }
+
+    // Update session with result
     setData('allEven is ' . ($isAllEven ? 'true' : 'false'), $_SESSION['programData']);
 }
 
-// Check if all elements are odd
+// Check if all elements in programData are odd
 function allOdd() {
-    // Calculate the product of all elements in programData
-    $product = array_product($_SESSION['programData']);
-    
-    // If the product is odd, all elements are odd; otherwise, at least one element is even
-    $isAllOdd = ($product % 2 !== 0);
-    
-    // Update session with the result message
+    $isAllOdd = true; // Assume all elements are odd initially
+
+    // Iterate through each element in programData
+    foreach ($_SESSION['programData'] as $n) {
+        // If any element is even, set $isAllOdd to false and break out of the loop
+        if ($n % 2 === 0) {
+            $isAllOdd = false;
+            break;
+        }
+    }
+
+    // Update session 
     setData('allOdd is ' . ($isAllOdd ? 'true' : 'false'), $_SESSION['programData']);
 }
+
 
 // Handle commands sent from the form
 if (isset($_GET['command'])) {
