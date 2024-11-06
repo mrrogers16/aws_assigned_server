@@ -53,7 +53,7 @@ function oddify() {
     }, $_SESSION['programData']);
     setData('data has been modified', $_SESSION['programData']);
 }
-
+// Increment all values in programData
 function incr() {
     $_SESSION['programData'] = array_map(function($n) {
         return $n + 1;
@@ -93,6 +93,9 @@ if (isset($_GET['command'])) {
             break;
         case 'isOdd':
             allOdd();
+            break;
+        case 'incr':
+            incr();
             break;
     }
 }
