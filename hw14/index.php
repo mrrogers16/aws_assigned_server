@@ -61,23 +61,30 @@ function incr() {
     setData('data has been incremented', $_SESSION['programData']);
 }
 
-// Check if all elements are even
+// Check if all elements  in programData are even
 function allEven() {
-    $isAllEven = array_reduce($_SESSION['programData'], function($carry, $n) {
-        return $carry && ($n % 2 === 0);
-    }, true);
+
+    // Calculate the sum of all elements in programData
+    $sum = array_sum($_SESSION['programData']);
+    
+    // If the sum is even, all elements are even
+    $isAllEven = ($sum % 2 === 0);
+    
+    // Update session with the result message
     setData('allEven is ' . ($isAllEven ? 'true' : 'false'), $_SESSION['programData']);
 }
 
 // Check if all elements are odd
 function allOdd() {
+    // Calculate the product of all elements in programData
+    $product = array_product($_SESSION['programData']);
     
-    $isAllOdd = array_reduce($_SESSION['programData'], function($carry, $n) {
-        return $carry && ($n % 2 !== 0);
-    }, true);
+    // If the product is odd, all elements are odd; otherwise, at least one element is even
+    $isAllOdd = ($product % 2 !== 0);
+    
+    // Update session with the result message
     setData('allOdd is ' . ($isAllOdd ? 'true' : 'false'), $_SESSION['programData']);
 }
-
 
 // Handle commands sent from the form
 if (isset($_GET['command'])) {
