@@ -1,25 +1,26 @@
 <?php
 session_start();
 
-// Initialize programData in session if not already set
+// Initialize programData for our global variable like hw07 in session if not already set
 if (!isset($_SESSION['programData'])) {
     $_SESSION['programData'] = [];
 }
 
-// Function to return current data for display
+// Function retrieves current data to display
 function get_data() {
     return implode(' ', $_SESSION['programData']);
 }
 
 // Function to return the last command's result message for display
+// Defaults to nothing yet if not set
 function get_result() {
     return isset($_SESSION['statusMessage']) ? $_SESSION['statusMessage'] : "nothing yet";
 }
 
 // Helper function to set data and result message
 function setData($msg, $data) {
-    $_SESSION['programData'] = $data;
-    $_SESSION['statusMessage'] = $msg;
+    $_SESSION['programData'] = $data; // update programData with new Data
+    $_SESSION['statusMessage'] = $msg; // Set the status message for display
 }
 
 // Helper function to populate an array
@@ -57,6 +58,7 @@ function allEven() {
 
 // Check if all elements are odd
 function allOdd() {
+    
     $isAllOdd = array_reduce($_SESSION['programData'], function($carry, $n) {
         return $carry && ($n % 2 !== 0);
     }, true);
@@ -82,7 +84,7 @@ if (isset($_GET['command'])) {
 }
 
 // Optional debug output for session data
-$debug = $_SESSION;
+#$debug = $_SESSION;
 
 ?>
 
