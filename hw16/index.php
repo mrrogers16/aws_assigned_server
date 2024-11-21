@@ -163,6 +163,7 @@ function displayCustomerOrders($customerID)
         echo "<h2>Orders</h2>";
         echo "<form method='get'>";
         echo "<input type='hidden' name='mode' value='customer' />"; // Stay on the same page
+        echo "<input type='hidden' name='customer' value='" . htmlspecialchars($customerID) . "' />"; // Preserve customer ID
         echo "<label for='order'>Select an order:</label>";
         echo "<select name='order'>";
         echo "<option value=''>--Select an Order--</option>";
@@ -247,6 +248,11 @@ function generateCustomerPage()
     displaySalesRepDetails($customer['salesRepEmployeeNumber']);
 
     displayCustomerOrders($customerID);
+
+    $selectedOrderID = $_GET['order'] ?? "";
+    if ($selectedOrderID) {
+        displayOrderDetails($selectedOrderID);
+    }
 }
 
 $router = [
