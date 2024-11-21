@@ -18,7 +18,7 @@ function open_page($title)
 <html>
 <head>
 <link rel="icon" href="data:,">
-<title>Dr.Z -- $title page</title>
+<title>Mickey Clarke -- $title page</title>
 </head>
 <body>
 EOS;
@@ -67,15 +67,31 @@ function generateHomePage()
 function generateCustomerPage()
 {
     global $conn;
+
     $customerID = $_POST['customer'] ?? $_GET['customer'] ?? "";
-    if (!$customerID) return generateHomePage();
+
+    if (!$customerID) {
+
+        return generateHomePage();
+    }
+
     $sql = sprintf("select * from `customers` where `customerNumber`='%s'", $conn->real_escape_string($customerID));
+
     $result = $conn->query($sql);
+
     if (!$result->num_rows) {
         return generateHomePage();
     }
-    $row = $result->fetch_assoc();
-    echo "<code><pre>" . print_r($row, true) . "</pre></code>";
+
+    $customer = $result->fetch_assoc();
+
+    //Display customer details
+    echo "<h2>Customer Details</h2>";
+    echo "<table border='1'";
+    foreach ($customer as $key => $value) {
+        echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
+    }
+    echo "</table>";
 }
 
 
