@@ -92,7 +92,36 @@ function generateCustomerPage()
         echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
     }
     echo "</table>";
+
+    // Fetch salesRepID 
+    $salesRepID = $customer['salesRepEmployeeNumber'];
+
+    // If we find it, query 
+    if ($salesRepID) {
+        $sql =  sprintf(
+            "SELECT firstName, lastName, email, officeCode FROM `employees` WHERE `employeeNumber`='%s'",
+            $conn->real_escape_string($salesRepID)
+        );
+        $salesRepResult = $conn->query($sql);
+
+        if ($salesRepResult && $salesRepResult->num_rows > 0) {
+            $salesRep = $salesRepResult->fetch_assoc();
+
+            // Display salesRep details
+            echo "<h2>Sales Representative Details</h2>";
+            echo "<table border='1'>";
+            echo "<tr><th>Name</th><td>" . htmlspecialchars($salesRep['firstName']) . " " . htmlspecialchars($salesRep['lastName']) . "</td></tr>";
+            echo "<tr><th>Email</th><td>" . htmlspecialchars(($salesRep['email']) . "</td></tr>");
+            echo "<tr><th>Office Code</th><td>" . htmlspecialchars(($salesRep['officeCode']) . "</td></tr>");
+            echo "</table>";
+        } else {
+            echo "<p>No sales representative details found.</p>";
+        }
+    } else {
+        echo "<p>No sales representative assigned to this customer.</p>";
+    }
 }
+
 
 
 
