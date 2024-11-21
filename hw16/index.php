@@ -216,6 +216,42 @@ function displaySalesRepDetails($salesRepID)
     }
 }
 
+function displayCustomerPayments($customerID)
+{
+
+    global $conn;
+
+    $sql = sprintf(
+        "SELECT checkNumber, paymentDate, amount FROM `payments` WHERE `customerNumber`='%s'",
+        $conn->real_escape_string($customerID)
+    );
+
+    $result = $conn->query($sql);
+
+    echo "<h2>Payment Summary</h2>";
+
+    if ($result && $result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr>
+                <th>Check Number</th>
+                <th>Payment Date</th>
+                <th>Amount</th>
+              </tr>";
+
+        // Loop through results and display them in a table
+        while ($payment = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($payment['checkNumber']) . "</td>";
+            echo "<td>" . htmlspecialchars($payment['paymentDate']) . "</td>";
+            echo "<td>" . htmlspecialchars($payment['amount']) . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "<p>No payments found for this customer.</p>";
+    }
+}
+
 
 function generateCustomerPage()
 {
@@ -253,6 +289,8 @@ function generateCustomerPage()
     if ($selectedOrderID) {
         displayOrderDetails($selectedOrderID);
     }
+
+    displayCustomerPayments($customerID);
 }
 
 $router = [
