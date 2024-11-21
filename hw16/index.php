@@ -29,6 +29,33 @@ function close_page()
     echo '</body></html>';
 }
 
+function getCustomerDetails($customerID)
+{
+    global $conn;
+
+    $sql = sprintf(
+        "SELECT * FROM `customers` WHERE `customerNumber`='%s'",
+        $conn->real_escape_string($customerID)
+    );
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        return $result->fetch_assoc();
+    }
+
+    return null;
+}
+
+function displayCustomerDetails($customer)
+{
+    echo "<h2>Customer Details</h2>";
+    echo "<table border='1'>";
+    foreach ($customer as $key => $value) {
+        echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
+    }
+    echo "</table>";
+}
+
 function generateHomePage()
 {
     global $conn; // Use the global connection established earlier
@@ -64,6 +91,67 @@ function generateHomePage()
 <?php
 }
 
+function displayCustomerOrders($customerID)
+{
+    global $conn;
+
+    $sql = sprintf(
+        "SELECT orderNumber, status FROM `orders` WHERE `customerNumber`='%s'",
+        $conn->real_escape_string($customerID)
+    );
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        echo "<h2>Orders</h2>";
+        echo "<form method='get'>";
+        echo "<input type='hidden' name='mode' value='orderDetails' />";
+        echo "<label for='order'>Select an order:</label>";
+        echo "<select name='order'>";
+        echo "<option value=''>--Select an Order--</option>";
+        while ($row = $result->fetch_assoc()) {
+            $orderNumber = htmlspecialchars($row['orderNumber']);
+            $status = htmlspecialchars($row['status']);
+            echo "<option value=\"$orderNumber\">Order #$orderNumber ($status)</option>";
+        }
+        echo "</select>";
+        echo "<input type='submit' value='Go' />";
+        echo "</form>";
+    } else {
+        echo "<p>No orders found for this customer.</p>";
+    }
+}
+
+
+function displaySalesRepDetails($salesRepID)
+{
+    global $conn;
+
+    if (!$salesRepID) {
+        echo "<p>No sales representative assigned to this customer.</p>";
+        return;
+    }
+
+    $sql = sprintf(
+        "SELECT firstName, lastName, email, officeCode FROM `employees` WHERE `employeeNumber`='%s'",
+        $conn->real_escape_string($salesRepID)
+    );
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        $salesRep = $result->fetch_assoc();
+
+        echo "<h2>Sales Representative Details</h2>";
+        echo "<table border='1'>";
+        echo "<tr><th>Name</th><td>" . htmlspecialchars($salesRep['firstName']) . " " . htmlspecialchars($salesRep['lastName']) . "</td></tr>";
+        echo "<tr><th>Email</th><td>" . htmlspecialchars($salesRep['email']) . "</td></tr>";
+        echo "<tr><th>Office Code</th><td>" . htmlspecialchars($salesRep['officeCode']) . "</td></tr>";
+        echo "</table>";
+    } else {
+        echo "<p>No sales representative details found.</p>";
+    }
+}
+
+
 function generateCustomerPage()
 {
     global $conn;
@@ -83,44 +171,18 @@ function generateCustomerPage()
         return generateHomePage();
     }
 
-    $customer = $result->fetch_assoc();
+    $customer = getCustomerDetails($customerID);
 
-    //Display customer details
-    echo "<h2>Customer Details</h2>";
-    echo "<table border='1'";
-    foreach ($customer as $key => $value) {
-        echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
+    if (!$customer) {
+        echo "<p>No customer found with ID: " . htmlspecialchars($customerID) . "</p>";
+        return generateHomePage();
     }
-    echo "</table>";
 
-    // Fetch salesRepID 
-    $salesRepID = $customer['salesRepEmployeeNumber'];
+    displayCustomerDetails($customer);
 
-    // If we find it, query 
-    if ($salesRepID) {
-        $sql =  sprintf(
-            "SELECT firstName, lastName, email, officeCode FROM `employees` WHERE `employeeNumber`='%s'",
-            $conn->real_escape_string($salesRepID)
-        );
-        $salesRepResult = $conn->query($sql);
+    displaySalesRepDetails($customer['salesRepEmployeeNumber']);
 
-        if ($salesRepResult && $salesRepResult->num_rows > 0) {
-            $salesRep = $salesRepResult->fetch_assoc();
-
-            // Display salesRep details
-            echo "<h2>Sales Representative Details</h2>";
-            echo "<table border='1'>";
-            echo "<tr><th>Name</th><td>" . htmlspecialchars($salesRep['firstName']) . " " . htmlspecialchars($salesRep['lastName']) . "</td></tr>";
-
-            echo "<tr><th>Email</th><td>" . htmlspecialchars($salesRep['email']) . "</td></tr>";
-            echo "<tr><th>Office Code</th><td>" . htmlspecialchars($salesRep['officeCode']) . "</td></tr>";
-            echo "</table>";
-        } else {
-            echo "<p>No sales representative details found.</p>";
-        }
-    } else {
-        echo "<p>No sales representative assigned to this customer.</p>";
-    }
+    displayCustomerOrders($customerID);
 }
 
 
