@@ -95,60 +95,59 @@ function displayOrderDetails($orderID)
 {
     global $conn;
 
-    // Query to fetch ortder details
-    $sql = sprintf("SELECT * FROM `orders` WHERE `orderNumber` = '%s'",
-    $conn->real_escape_string($orderID);
+    // Query to fetch order details
+    $sql = sprintf(
+        "SELECT * FROM `orders` WHERE `orderNumber` = '%s'",
+        $conn->real_escape_string($orderID)
     );
-    
+
     $result = $conn->query($sql);
 
-    if($result && result->num_rows > 0)
-    {
+    if ($result && $result->num_rows > 0) {
         $order = $result->fetch_assoc();
 
         // Display Order Details
         echo "<h3>Order Details</h3>";
         echo "<table border='1'>";
-        foreach($order as $key => $value)
-        {
+        foreach ($order as $key => $value) {
             echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
         }
         echo "</table>";
-    
 
-    // Fetch order line items
-    $sql = sprintf("SELECT productCode, quantityOrdered, priceEach, orderLineNumber FROM `orderdetails` WHERE `orderNumber`='%s'",
-    $conn->real_escape_string($orderID));
+        // Fetch order line items
+        $sql = sprintf(
+            "SELECT productCode, quantityOrdered, priceEach, orderLineNumber 
+             FROM `orderdetails` WHERE `orderNumber`='%s'",
+            $conn->real_escape_string($orderID)
+        );
 
-    $lineResult = $conn->query($sql);
+        $lineResult = $conn->query($sql);
 
-    if ($lineResult && $lineResult->num_rows > 0)
-    {
-        echo "<h3>Order Line Items</h3>";
-        echo "<table border='1'>";
-        echo "<tr>
-                <th>Product Code</th>
-                <th>Quantity Ordered</th>
-                <th>Price Each</th>
-                <th>Order Line Number</th>
-              </tr>";
-        while ($line = $lineResult->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($line['productCode']) . "</td>";
-            echo "<td>" . htmlspecialchars($line['quantityOrdered']) . "</td>";
-            echo "<td>" . htmlspecialchars($line['priceEach']) . "</td>";
-            echo "<td>" . htmlspecialchars($line['orderLineNumber']) . "</td>";
-            echo "</tr>";
+        if ($lineResult && $lineResult->num_rows > 0) {
+            echo "<h3>Order Line Items</h3>";
+            echo "<table border='1'>";
+            echo "<tr>
+                    <th>Product Code</th>
+                    <th>Quantity Ordered</th>
+                    <th>Price Each</th>
+                    <th>Order Line Number</th>
+                  </tr>";
+            while ($line = $lineResult->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($line['productCode']) . "</td>";
+                echo "<td>" . htmlspecialchars($line['quantityOrdered']) . "</td>";
+                echo "<td>$" . htmlspecialchars(number_format($line['priceEach'], 2)) . "</td>";
+                echo "<td>" . htmlspecialchars($line['orderLineNumber']) . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "<p>No line items found for this order.</p>";
         }
-        echo "</table>";
     } else {
-        echo "<p>No line items found for this order.</p>";
-    }
-    else {
         echo "<p>No details found for the selected order.</p>";
     }
-
-}   
+}
 
 function displayCustomerOrders($customerID)
 {
@@ -160,16 +159,14 @@ function displayCustomerOrders($customerID)
     );
     $result = $conn->query($sql);
 
-    if ($result && $result->num_rows > 0) 
-    {
+    if ($result && $result->num_rows > 0) {
         echo "<h2>Orders</h2>";
         echo "<form method='get'>";
         echo "<input type='hidden' name='mode' value='customer' />"; // Stay on the same page
         echo "<label for='order'>Select an order:</label>";
         echo "<select name='order'>";
         echo "<option value=''>--Select an Order--</option>";
-        while ($row = $result->fetch_assoc()) 
-        {
+        while ($row = $result->fetch_assoc()) {
             $orderNumber = htmlspecialchars($row['orderNumber']);
             $status = htmlspecialchars($row['status']);
             echo "<option value=\"$orderNumber\">Order #$orderNumber ($status)</option>";
@@ -180,13 +177,10 @@ function displayCustomerOrders($customerID)
 
         // If an order is selected, display the details
         $selectedOrderID = $_GET['order'] ?? "";
-        if ($selectedOrderID) 
-        {
+        if ($selectedOrderID) {
             displayOrderDetails($selectedOrderID);
         }
-    } 
-    else 
-    {
+    } else {
         echo "<p>No orders found for this customer.</p>";
     }
 }
@@ -254,9 +248,6 @@ function generateCustomerPage()
 
     displayCustomerOrders($customerID);
 }
-
-
-
 
 $router = [
     "home" => 'generateHomePage',
