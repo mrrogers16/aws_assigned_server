@@ -280,17 +280,16 @@ function generateCustomerPage()
         return generateHomePage();
     }
 
+    // Customer Information
     displayCustomerDetails($customer);
 
+    // Customer's Sales Representative Information
     displaySalesRepDetails($customer['salesRepEmployeeNumber']);
 
+    // Customer Order Information
     displayCustomerOrders($customerID);
 
-    $selectedOrderID = $_GET['order'] ?? "";
-    if ($selectedOrderID) {
-        displayOrderDetails($selectedOrderID);
-    }
-
+    // Payments Summary 
     displayCustomerPayments($customerID);
 }
 
