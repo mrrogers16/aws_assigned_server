@@ -18,6 +18,7 @@ function open_page($title)
 <html>
 <head>
 <link rel="icon" href="data:,">
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title>Mickey Clarke -- $title page</title>
 </head>
 <body>
