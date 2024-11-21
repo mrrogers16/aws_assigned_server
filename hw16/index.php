@@ -50,9 +50,13 @@ function getCustomerDetails($customerID)
 function displayCustomerDetails($customer)
 {
     echo "<h2>Customer Details</h2>";
-    echo "<table border='1'>";
+    echo "<table class='customer-details'>"; // Add customer-details class for styling
+    #echo "<table border='1'>";
     foreach ($customer as $key => $value) {
-        echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
+        echo "<tr>";
+        echo "<th>" . htmlspecialchars($key) . "</th>"; // Left column
+        echo "<th>" . htmlspecialchars($value) . "</td>"; // Right column
+        echo "</tr>";
     }
     echo "</table>";
 }
