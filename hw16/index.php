@@ -2,8 +2,15 @@
 // include_once("../../php/hw16/db_secrets") ;
 $servername = "localhost";
 $username = "hw16";
-$password = "**************";
+$password = "Printer12";
 $dbname = "hw16";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection Failed: " - $conn->connect_error);
+}
+
 function open_page($title)
 {
     echo <<<EOS
@@ -16,29 +23,63 @@ function open_page($title)
 <body>
 EOS;
 }
+
 function close_page()
 {
     echo '</body></html>';
 }
+
 function generateHomePage()
-{ ?>
+{
+    global $conn; // Use the global connection established earlier
+
+    // Query to fetch all customers
+    $sql = "SELECT customerNumber, customerName FROM customers";
+    $result = $conn->query($sql);
+
+    // Handle if no customers are found 
+    if (!$result || $result->num_rows === 0) {
+        echo "No customers found in the database.";
+        return;
+    }
+
+    // Generate the HTML for the page
+?>
     <form method="get">
         <input type="hidden" name="mode" value="customer" />
         <label for="customer">Choose a customer:</label>
         <select name="customer">
             <option value="">--Select a Customer--</option>
-            <option value="242">Alpha Cognac</option>
-            <option value="168">American Souvenirs Inc</option>
-            <option value="249">Amica Models & Co.</option>
+            <?php
+            // Loop through each row and create an option in the select menu
+            while ($row = $result->fetch_assoc()) {
+                $customerNumber = htmlspecialchars($row['customerNumber']);
+                $customerName = htmlspecialchars($row['customerName']);
+                echo "<option value=\"$customerNumber\">$customerName</option>";
+            }
+            ?>
         </select>
         <input type="submit" name="submit" value="go" />
     </form>
 <?php
 }
+
 function generateCustomerPage()
 {
-    echo "Welcome to customer's page";
+    global $conn;
+    $customerID = $_POST['customer'] ?? $_GET['customer'] ?? "";
+    if (!$customerID) return generateHomePage();
+    $sql = sprintf("select * from `customers` where `customerNumber`='%s'", $conn->real_escape_string($customerID));
+    $result = $conn->query($sql);
+    if (!$result->num_rows) {
+        return generateHomePage();
+    }
+    $row = $result->fetch_assoc();
+    echo "<code><pre>" . print_r($row, true) . "</pre></code>";
 }
+
+
+
 $router = [
     "home" => 'generateHomePage',
     "customer" => 'generateCustomerPage',
