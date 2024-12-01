@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastName = trim($_POST['lastName'] ?? '');
     $jobTitle = trim($_POST['jobTitle'] ?? '');
     $email = trim($_POST['email'] ?? '');
-    $officeCode = trim($_POST['officeCode'] ?? '');
+    $officeCode = trim($_POST['office'] ?? '');
 
     // Server side validation 
     // Validate first name
@@ -169,7 +169,7 @@ $conn->close();
 
         <!--Office-->
         <label for="office">Office:</label>
-        <select name="office" id="officeCode" required>
+        <select name="office" id="office" required>
             <?php echo $officeList; ?>
         </select>
         <br><br>
