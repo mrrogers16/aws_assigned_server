@@ -24,19 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Server side validation 
     // Validate first name
     if (strlen($firstName) < 2 || !preg_match("/^[a-zA-Z'-]+$/", $firstName)) {
-        $errors[] = "First name must be at least 2 characters long and contain only letters, numbers, or apostrophes.";
+        $errors[] = "First name must be at least 2 characters long and contain only letters, hyphens, or apostrophes.";
         $firstName = ''; // Clear input
     }
 
     // Validate first name
     if (strlen($lastName) < 2 || !preg_match("/^[a-zA-Z'-]+$/", $lastName)) {
-        $errors[] = "Last name must be at least 2 characters long and contain only letters, numbers, or apostrophes.";
+        $errors[] = "Last name must be at least 2 characters long and contain only letters, hyphens, or apostrophes.";
         $lastName = ''; // Clear input
     }
 
     // Validate job title 
     if (strlen($jobTitle) < 4 || !preg_match("/^[a-zA-Z0-9-]+$/", $jobTitle)) {
-        $errors[] = "Job title must be at least 4 characters long and contain only letters, numbers, or hyphens.";
+        $errors[] = "Job title must be at least 4 characters long and contain only letters, hyphens, or apostrophes.";
         $jobTitle = ''; // Clear invalid input
     }
 
@@ -81,19 +81,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $reportsTo = '2002';
 
         // INSERT statement 
-        $statment = $conn->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $statment->bind_param("issssiss", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
+        $statement = $conn->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $statement->bind_param("issssiss", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
 
-        if ($statment->execute()) {
+        if ($statement->execute()) {
             // Redirect back to index.php to display updated employee list
             header("Location: index.php");
             exit();
         } else {
-            $errors[] = "Error inserting data: " . $statment->error;
+            $errors[] = "Error inserting data: " . $statement->error;
         }
 
         // Close statement and connection 
-        $statment->close();
+        $statement->close();
         $conn->close();
     }
 }
@@ -113,7 +113,8 @@ $result = $conn->query($sql);
 $officeList = "";
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $officeList .= "<option value='{$row['officeCode']}'>" . htmlspecialchars($row['city']) . "</option>";
+        $selected = ($row['officeCode'] == $officeCode) ? 'selected' : '';
+        $officeList .= "<option value='" . htmlspecialchars($row['officeCode']) . "' $selected>" . htmlspecialchars($row['city']) . "</option>";
     }
 } else {
     $officeList = "<option disabled>No offices available</option>";
@@ -168,8 +169,10 @@ $conn->close();
 
         <!--Office-->
         <label for="office">Office:</label>
-        <input type="text" name="office" id="office" value="" required>
-        <br>
+        <select name-="office" id="office" required>
+            <?php echo $officeList; ?>
+                </select>
+        <br><br>
 
         <!--Buttons-->
         <button type="reset">Reset</button>
