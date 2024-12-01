@@ -1,63 +1,72 @@
-<?php
+    <?php
 
-$servername = "localhost";
+    $servername = "localhost";
 
-$username = "hw15";
+    $username = "hw15";
 
-$password = "Printer12";
+    $password = "Printer12";
 
-$dbname = "hw15";
-
-
-
-// Create a connection
-
-try {
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-} catch (Exception $e) {
-
-    die("Connection failed: " . $e);
-}
+    $dbname = "hw15";
 
 
 
-// Execute the query
+    // Create a connection
 
-$sql = "SELECT E.firstName, E.lastName, O.city, O.state, O.country FROM employees as E, offices as O where E.officeCode = O.officeCode";
+    try {
 
-$result = $conn->query($sql);
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    } catch (Exception $e) {
 
-
-
-// go over the results
-
-if ($result->num_rows > 0) {
-
-    echo "<table><tr><th></th><th>Last</th><th>First</th><th>City</th><th>State</th><th>Country</th></tr>";
-
-    $k = 0;
-
-    while ($row = $result->fetch_assoc()) {
-
-        echo '<tr>';
-
-        echo '<td>' . ++$k . ')</td>';
-
-        foreach (['lastName', 'firstName', 'city', 'state', 'country'] as $key) {
-
-            echo '<td>' . $row[$key] . '</td>';
-        }
-
-        echo '</tr>';
+        die("Connection failed: " . $e);
     }
 
-    echo '</table>';
-} else {
-
-    echo "0 results";
-}
 
 
+    // Execute the query
 
-$conn->close();
+    $sql = "SELECT E.firstName, E.lastName, O.city, O.state, O.country FROM employees as E, offices as O where E.officeCode = O.officeCode";
+
+    $result = $conn->query($sql);
+
+
+
+    // go over the results
+
+    if ($result->num_rows > 0) {
+
+        echo "<table>
+                <tr><th></th><th>Last</th><th>First</th><th>City</th><th>State</th><th>Country</th></tr>";
+
+        $k = 0;
+
+        while ($row = $result->fetch_assoc()) {
+
+            echo '<tr>';
+
+            echo '<td>' . ++$k . ')</td>';
+
+            foreach (['lastName', 'firstName', 'city', 'state', 'country'] as $key) {
+
+                echo '<td>' . $row[$key] . '</td>';
+            }
+
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    } else {
+
+        echo "0 results";
+    }
+
+    // New employee button
+    echo '
+        <form action="add_employee.php" method="get" style="margin-top: 20px;">
+            <button type="submit">Add New Employee</button>
+        </form>
+        ';
+
+
+    $conn->close();
+
+    ?>
