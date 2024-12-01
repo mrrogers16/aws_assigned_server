@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $firstName = ''; // Clear input
     }
 
-    // Validate first name
+    // Validate last name
     if (strlen($lastName) < 2 || !preg_match("/^[a-zA-Z'-]+$/", $lastName)) {
         $errors[] = "Last name must be at least 2 characters long and contain only letters, hyphens, or apostrophes.";
         $lastName = ''; // Clear input
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validate job title 
     if (strlen($jobTitle) < 4 || !preg_match("/^[a-zA-Z0-9-]+$/", $jobTitle)) {
-        $errors[] = "Job title must be at least 4 characters long and contain only letters, hyphens, or apostrophes.";
+        $errors[] = "Job title must be at least 4 characters long and contain only letters, hyphens, or numbers.";
         $jobTitle = ''; // Clear invalid input
     }
 
@@ -149,29 +149,29 @@ $conn->close();
     <form action="add_employee.php" method="post" id="employeeForm">
         <!-- First Name -->
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName" value="" required>
+        <input type="text" name="firstName" id="firstName" value="<?php echo htmlspecialchars($firstName); ?>" required>
         <br>
 
         <!--Last Name-->
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName" value="" required>
+        <input type="text" name="lastName" id="lastName" value="<?php echo htmlspecialchars($lastName); ?>" required>
         <br>
 
         <!--Job Title-->
         <label for="jobTitle">Job Title:</label>
-        <input type="text" name="jobTitle" id="jobTitle" value="" required>
+        <input type="text" name="jobTitle" id="jobTitle" value="<?php echo htmlspecialchars($jobTitle); ?>" required>
         <br>
 
         <!--Email-->
         <label for="email">Email:</label>
-        <input type="text" name="email" id="email" value="" required>
+        <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>" required>
         <br>
 
         <!--Office-->
         <label for="office">Office:</label>
-        <select name-="office" id="office" required>
+        <select name="office" id="officeCode" required>
             <?php echo $officeList; ?>
-                </select>
+        </select>
         <br><br>
 
         <!--Buttons-->
