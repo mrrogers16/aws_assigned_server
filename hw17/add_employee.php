@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $reportsTo = NULL;
 
         // INSERT statement 
-        $statement = $conn->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $statement = $conn->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $statement->bind_param("issssss", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
 
         if ($statement->execute()) {
