@@ -172,6 +172,9 @@ $conn->close();
         <!--Office-->
         <label for="office">Office:</label>
         <select name="office" id="office" required>
+            <!-- Add default value to top of the dropdown box -->
+            <!-- Note: 'disabled' prevents the user from selecting this option again after choosing an option -->
+            <option value="" disabled <?php echo empty($officeCode) ? 'selected' : ''; ?>>Select an office</option>
             <?php echo $officeList; ?>
         </select>
         <br><br>
