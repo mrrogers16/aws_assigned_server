@@ -78,11 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Assign default values for extensions and reportsTo
         $extension = 'x' . rand(1000, 9999);
-        $reportsTo = '2002';
+        $reportsTo = 2002;
 
         // INSERT statement 
         $statement = $conn->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $statement->bind_param("issssiss", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
+        $statement->bind_param("issssis", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
 
         if ($statement->execute()) {
             // Redirect back to index.php to display updated employee list
@@ -100,10 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 // Fetch offices from the database
-try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-} catch (Exception $e) {
-    die("Connection failed: " . $e);
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
 $sql = "SELECT officeCode, city FROM offices";

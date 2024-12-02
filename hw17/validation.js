@@ -5,7 +5,7 @@ document.getElementById('employeeForm').addEventListener('submit', function (eve
     let messages = [];
 
     // First name validation
-    const firstName = document.getElementById('firstName').ariaValueMax.trim();
+    const firstName = document.getElementById('firstName').value.trim();
     if (!/^[a-zA-Z'-]{2,}$/.test(firstName)) {
         isValid = false;
         messages.push('First name must be at least 2 characters long and contain only letters, hyphens, or apostrophes.');
