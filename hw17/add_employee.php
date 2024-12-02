@@ -78,11 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Assign default values for extensions and reportsTo
         $extension = 'x' . rand(1000, 9999);
-        $reportsTo = 2002;
+        $reportsTo = NULL;
 
         // INSERT statement 
         $statement = $conn->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $statement->bind_param("issssis", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
+        $statement->bind_param("issssss", $employeeNumber, $lastName, $firstName, $extension, $email, $officeCode, $reportsTo, $jobTitle);
 
         if ($statement->execute()) {
             // Redirect back to index.php to display updated employee list
