@@ -45,5 +45,8 @@ sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/hw16/ /var/www/
 # Sync the hw17 directory to the web directory
 sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/hw17/ /var/www/html/hw17/
 
+# Sync the hw18 directory to the web directory
+sudo rsync -av --delete /home/ubuntu/staging/aws_assigned_server/hw18/ /var/www/html/hw18/
+
 # Reload the Nginx service to apply changes
 sudo service nginx reload
