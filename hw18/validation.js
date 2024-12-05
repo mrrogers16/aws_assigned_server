@@ -42,8 +42,7 @@ document.getElementById('employeeForm').addEventListener('submit', function (eve
 });
 
 // AJAX email validation
-document.getElementById('email').addEventListener('input', function ()
-{
+document.getElementById('email').addEventListener('input', function () {
     const email = this.value.trim();
     const emailError = document.getElementById('emailError');
 
@@ -51,22 +50,19 @@ document.getElementById('email').addEventListener('input', function ()
     emailError.textContent = '';
 
     // Only send request if email is not empty
-    if (email)
-    {
-        fetch(`validate_email.php?email=${encodedURIComponent(email)}`)
+    if (email) {
+        fetch(`validate_email.php?email=${encodeURIComponent(email)}`)
             .then(response => response.json())
-            .then(data =>
-            {
-                if(data.exists)
-                {
+            .then(data => {
+                if (data.exists) {
                     // Email already exists
                     emailError.textContent = 'This email is already in use. Please enter a different email.';
                     this.value = ''; // clear data
                 }
             })
-            .catch(error =>
-            {
+            .catch(error => {
                 console.error('Error:', error);
+                alert('An error occured while validating the email.');
             });
     }
 });
